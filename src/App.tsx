@@ -1,29 +1,14 @@
 import Team from './components/team';
-
-// This is a dummy data, replace this with real data later
-const dummyData1 = [
-    'groudon',
-    'zekrom',
-    'xerneas',
-    'kyurem',
-    'gholdengo',
-    'zapdos-galarian'
-];
-
-const dummyData2 = [
-    'lugia',
-    'genesect',
-    'yveltal',
-    'garchomp',
-    'buzzwole',
-    'regirock'
-];
+import { HeartbrokenKid, Boozdoo } from './static_data/teams';
+import './App.css';
 
 function App() {
     return (
         <div className="App">
-            <Team team={dummyData1} />
-            <Team team={dummyData2} />
+            <h1>HearbrokenKid's Team</h1>
+            <Team team={HeartbrokenKid} />
+            <h1>Boozdoo's Team</h1>
+            <Team team={Boozdoo} />
         </div>
     );
 }
