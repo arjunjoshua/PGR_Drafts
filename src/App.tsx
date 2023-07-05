@@ -1,14 +1,16 @@
-import Team from './components/team';
-import { HeartbrokenKid, Boozdoo } from './static_data/teams';
+// import Team from './components/team';
+// import { HeartbrokenKid, Boozdoo } from './static_data/teams';
 import './App.css';
+import TrainerDropdown from './components/trainerDropdown';
 
 function App() {
     return (
         <div className="App">
-            <h1>HearbrokenKid's Team</h1>
+            <TrainerDropdown />
+           {/* <h1>HearbrokenKid's Team</h1>
             <Team team={HeartbrokenKid} />
             <h1>Boozdoo's Team</h1>
-            <Team team={Boozdoo} />
+            <Team team={Boozdoo} /> */}
         </div>
     );
 }
