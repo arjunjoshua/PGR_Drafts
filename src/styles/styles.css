@@ -1,6 +1,6 @@
 .pokemon-grid {
     display: flex;
-    gap: 1em;
+    gap: 0.8em;
     justify-content: space-around;
     margin-left: 45%;
   }
@@ -19,5 +19,7 @@
   }
   
   .pokemon-card h2 {
+    margin-top: 10%;
     font-size: 1.2rem;
+    font-weight: 500;
   }
