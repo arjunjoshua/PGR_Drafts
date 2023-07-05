@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Team from './team';
+import '../styles/dropdown.css'
 
 interface Trainer {
   _id: string;
@@ -14,35 +15,41 @@ interface Team {
 
 const TrainerDropdown: React.FC = () => {
   const [trainers, setTrainers] = useState<Trainer[]>([]);
-  const [selectedTrainer, setSelectedTrainer] = useState<Trainer | null>(null);
+  const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
 
   useEffect(() => {
     fetch('http://localhost:3000/trainers')
       .then(response => response.json())
       .then(data => {
         setTrainers(data);
-        setSelectedTrainer(data[0]); // select the first trainer by default
+        setSelectedTrainers([data[0], data[1] || null]); // select the first two trainers by default
       })
       .catch(error => console.error(error));
   }, []);
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (index: number) => (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTrainerId = event.target.value;
     const newSelectedTrainer = trainers.find(trainer => trainer._id === selectedTrainerId);
-    setSelectedTrainer(newSelectedTrainer || null);
+    const newSelectedTrainers = [...selectedTrainers];
+    newSelectedTrainers[index] = newSelectedTrainer || null;
+    setSelectedTrainers(newSelectedTrainers);
   };
 
   return (
     <div>
-      <select onChange={handleChange}>
-        {trainers.map(trainer => (
-          <option key={trainer._id} value={trainer._id}>
-            {trainer.name}
-          </option>
-        ))}
-      </select>
-      {selectedTrainer && selectedTrainer.teams.map((team, index) => (
-        <Team key={index} team={team.pokemons} />
+      {[0, 1].map(index => (
+        <div key={index}>
+          <select className='trainer-dropdown' onChange={handleChange(index)}>
+            {trainers.map(trainer => (
+              <option key={trainer._id} value={trainer._id}>
+                {trainer.name}
+              </option>
+            ))}
+          </select>
+          {selectedTrainers[index] && selectedTrainers[index]!.teams.map((team, i) => (
+            <Team key={i} team={team.pokemons} />
+          ))}
+        </div>
       ))}
     </div>
   );

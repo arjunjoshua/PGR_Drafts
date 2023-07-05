@@ -1,0 +1,11 @@
+.trainer-dropdown {
+    display: inline-block;
+    margin-left: 70%;
+    padding: 10px;
+    margin-bottom: 5%;
+    color: rgb(240, 239, 244);
+  }
+  
+  .trainer-dropdown:hover {
+    background-color: #47353e;
+  }
