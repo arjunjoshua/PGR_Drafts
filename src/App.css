@@ -6,3 +6,7 @@ h1 {
     margin-left: 45%;
     color: #dfd0d0;
 }
+
+.react-sidebar-overlay {
+    pointer-events: none;
+}

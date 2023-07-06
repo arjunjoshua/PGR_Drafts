@@ -23,6 +23,7 @@ interface TrainerDropdownProps {
 const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers }) => {
   const handleChange = (index: number) => (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTrainerId = event.target.value;
+    console.log("Hi");
     const newSelectedTrainer = trainers.find(trainer => trainer._id === selectedTrainerId);
     const newSelectedTrainers = [...selectedTrainers];
     newSelectedTrainers[index] = newSelectedTrainer || null;
