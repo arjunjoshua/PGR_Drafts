@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+//import React, { useEffect, useState } from 'react';
 import Team from './team';
 import '../styles/dropdown.css'
 import '../App.css'
 
-interface Trainer {
+export interface Trainer {
   _id: string;
   name: string;
   teams: Team[];
@@ -14,20 +14,13 @@ interface Team {
   pokemons: string[];
 }
 
-const TrainerDropdown: React.FC = () => {
-  const [trainers, setTrainers] = useState<Trainer[]>([]);
-  const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
+interface TrainerDropdownProps {
+  trainers: Trainer[];
+  selectedTrainers: (Trainer | null)[];
+  setSelectedTrainers: React.Dispatch<React.SetStateAction<(Trainer | null)[]>>;
+}
 
-  useEffect(() => {
-    fetch('http://localhost:3000/trainers')
-      .then(response => response.json())
-      .then(data => {
-        setTrainers(data);
-        setSelectedTrainers([data[0], data[1] || data[0]]); // select the first two trainers by default
-      })
-      .catch(error => console.error(error));
-  }, []);
-
+const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers }) => {
   const handleChange = (index: number) => (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTrainerId = event.target.value;
     const newSelectedTrainer = trainers.find(trainer => trainer._id === selectedTrainerId);
@@ -42,7 +35,7 @@ const TrainerDropdown: React.FC = () => {
         <div key={index}>
           <div className="trainer-selection">
             <h1>Trainer {index + 1}: </h1>
-            <select className='trainer-dropdown' value={selectedTrainers[index]?._id} onChange={handleChange(index)}>
+            <select className='trainer-dropdown' value={selectedTrainers[index]?._id || ''} onChange={handleChange(index)}>
               {trainers.map(trainer => (
                 <option key={trainer._id} value={trainer._id}>
                   {trainer.name}
@@ -58,5 +51,6 @@ const TrainerDropdown: React.FC = () => {
     </div>
   );
 };
+
 
 export default TrainerDropdown;
