@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Team from './team';
 import '../styles/dropdown.css'
+import '../App.css'
 
 interface Trainer {
   _id: string;
@@ -22,7 +23,7 @@ const TrainerDropdown: React.FC = () => {
       .then(response => response.json())
       .then(data => {
         setTrainers(data);
-        setSelectedTrainers([data[0], data[1] || null]); // select the first two trainers by default
+        setSelectedTrainers([data[0], data[1] || data[0]]); // select the first two trainers by default
       })
       .catch(error => console.error(error));
   }, []);
@@ -39,13 +40,16 @@ const TrainerDropdown: React.FC = () => {
     <div>
       {[0, 1].map(index => (
         <div key={index}>
-          <select className='trainer-dropdown' onChange={handleChange(index)}>
-            {trainers.map(trainer => (
-              <option key={trainer._id} value={trainer._id}>
-                {trainer.name}
-              </option>
-            ))}
-          </select>
+          <div className="trainer-selection">
+            <h1>Trainer {index + 1}: </h1>
+            <select className='trainer-dropdown' value={selectedTrainers[index]?._id} onChange={handleChange(index)}>
+              {trainers.map(trainer => (
+                <option key={trainer._id} value={trainer._id}>
+                  {trainer.name}
+                </option>
+              ))}
+            </select>
+          </div>
           {selectedTrainers[index] && selectedTrainers[index]!.teams.map((team, i) => (
             <Team key={i} team={team.pokemons} />
           ))}

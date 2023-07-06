@@ -1,8 +1,14 @@
+.trainer-selection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+  }
+
 .trainer-dropdown {
     display: inline-block;
-    margin-left: 70%;
+    margin-left: 10%;
     padding: 10px;
-    margin-bottom: 5%;
     color: rgb(240, 239, 244);
   }
   
