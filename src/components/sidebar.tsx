@@ -34,10 +34,10 @@ interface Lobby {
         sidebar={lobbies.map(lobby => <button key={lobby._id} onClick={() => handleLobbySelect(lobby._id)}>{lobby.name}</button>)}
         open={sidebarOpen}
         onSetOpen={onSetSidebarOpen}
-        styles={{ sidebar: { background: "white" } }}
+        styles={{ sidebar: { background: "gray" } }}
       >
         <button onClick={() => onSetSidebarOpen(true)}>
-          Three bars icon
+          Lobbies
         </button>
       </Sidebar>
     );
