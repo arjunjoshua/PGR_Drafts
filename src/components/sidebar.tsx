@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import '../styles/burger-menu.css'
+import { set } from 'mongoose';
 
 interface LobbySidebarProps {
   handleLobbySelect: (lobbyId: string) => void;
@@ -50,8 +51,8 @@ const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect }) => {
         {lobbies.map(lobby => (
           <button key={lobby._id} onClick={() => handleButtonClick(lobby._id)}>
             {lobby.name}
-          </button>
-        ))}
+          </button>))}
+          <button onClick={() => setSidebarOpen(false)} className='bm-burger-button-close'>Close menu</button>
       </Menu>
     </div>
   );

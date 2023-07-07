@@ -6,7 +6,13 @@
 
   .bm-burger-button {
     position: relative;
-    left: 36px;
-    top: 36px;
+    left: 20px;
+    top: 42px;
+  }
+
+  .bm-burger-button-close {
+    position: absolute;
+    left: 20px;
+    bottom: 75px;
   }
 
