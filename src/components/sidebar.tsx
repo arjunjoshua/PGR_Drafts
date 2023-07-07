@@ -39,9 +39,9 @@ const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect }) => {
 
   return (
     <div>
-      <button onClick={() => setSidebarOpen(true)}>
-        Open menu
-      </button>
+      <button onClick={() => setSidebarOpen(true)} className='bm-burger-button'>
+        Select lobby
+        </button>
 
       <Menu 
         isOpen={sidebarOpen} 

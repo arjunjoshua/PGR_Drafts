@@ -1,4 +1,12 @@
 .bm-overlay-closed {
     width: 0;
     height: 0;
+    position: relative;
   }
+
+  .bm-burger-button {
+    position: relative;
+    left: 36px;
+    top: 36px;
+  }
+
