@@ -7,8 +7,10 @@ import { Trainer } from './components/trainerDropdown';
 function App() {
   const [trainers, setTrainers] = useState([]);
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
+  const [selectedLobby, setSelectedLobby] = useState<string>('64a5564e3d4c0835cd854be7');
 
     const handleLobbySelect = async (lobbyId: string) => {
+        setSelectedLobby(lobbyId);
         const response = await fetch(`http://localhost:3000/trainers/lobby/${lobbyId}`);
         const data = await response.json();
         setTrainers(data);
@@ -26,9 +28,9 @@ function App() {
       }, []);
 
   return (
-    <div>
+    <div className='app-body'>
       <LobbySidebar handleLobbySelect={handleLobbySelect} />
-      <TrainerDropdown trainers={trainers} selectedTrainers={selectedTrainers} setSelectedTrainers={setSelectedTrainers} />
+      <TrainerDropdown trainers={trainers} selectedTrainers={selectedTrainers} setSelectedTrainers={setSelectedTrainers} selectedLobby={selectedLobby} />
     </div>
   );
 }

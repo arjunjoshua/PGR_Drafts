@@ -12,15 +12,17 @@ export interface Trainer {
 interface Team {
   _id: string;
   pokemons: string[];
+  lobby: string;
 }
 
 interface TrainerDropdownProps {
   trainers: Trainer[];
   selectedTrainers: (Trainer | null)[];
   setSelectedTrainers: React.Dispatch<React.SetStateAction<(Trainer | null)[]>>;
+  selectedLobby: string;
 }
 
-const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers }) => {
+const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby }) => {
   const handleChange = (index: number) => (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTrainerId = event.target.value;
     const newSelectedTrainer = trainers.find(trainer => trainer._id === selectedTrainerId);
@@ -43,9 +45,11 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
               ))}
             </select>
           </div>
-          {selectedTrainers[index] && selectedTrainers[index]!.teams.map((team, i) => (
-            <Team key={i} team={team.pokemons} />
-          ))}
+          {selectedTrainers[index] && selectedTrainers[index]!.teams
+            .filter((team: Team) => team.lobby === selectedLobby)  // filter based on lobby
+            .map((team, i) => (
+              <Team key={i} team={team.pokemons} />
+            ))}
         </div>
       ))}
     </div>
