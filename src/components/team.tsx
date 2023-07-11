@@ -1,6 +1,5 @@
 import React from 'react';
 import Pokemon from './pokemon';
-import { HeartbrokenKid, Boozdoo } from '../static_data/teams';
 
 type TeamProps = {
     team: string[]; // An array of Pokemon names

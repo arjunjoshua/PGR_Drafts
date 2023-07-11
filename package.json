@@ -10,12 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "mongoose": "^7.3.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-burger-menu": "^3.0.9",
+    "react-dom": "^18.2.0",
+    "react-sidebar": "^3.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
+    "@types/react-burger-menu": "^2.8.3",
     "@types/react-dom": "^18.0.11",
+    "@types/react-sidebar": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "@vitejs/plugin-react": "^4.0.0",

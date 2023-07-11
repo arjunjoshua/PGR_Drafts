@@ -1,0 +1,17 @@
+.trainer-selection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+  }
+
+.trainer-dropdown {
+    display: inline-block;
+    margin-left: 10%;
+    padding: 10px;
+    color: rgb(240, 239, 244);
+  }
+  
+  .trainer-dropdown:hover {
+    background-color: #47353e;
+  }
