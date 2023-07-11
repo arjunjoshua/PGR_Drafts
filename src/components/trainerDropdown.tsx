@@ -19,7 +19,7 @@ interface TrainerDropdownProps {
   trainers: Trainer[];
   selectedTrainers: (Trainer | null)[];
   setSelectedTrainers: React.Dispatch<React.SetStateAction<(Trainer | null)[]>>;
-  selectedLobby: string;
+  selectedLobby: { _id: string; name: string };
 }
 
 const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby }) => {
@@ -36,7 +36,7 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
       {[0, 1].map(index => (
         <div key={index}>
           <div className="trainer-selection">
-            <h1>Trainer {index + 1}: </h1>
+            <h3>Trainer {index + 1}: </h3>
             <select className='trainer-dropdown' value={selectedTrainers[index]?._id || ''} onChange={handleChange(index)}>
               {trainers.map(trainer => (
                 <option key={trainer._id} value={trainer._id}>
@@ -46,7 +46,7 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             </select>
           </div>
           {selectedTrainers[index] && selectedTrainers[index]!.teams
-            .filter((team: Team) => team.lobby === selectedLobby)  // filter based on lobby
+            .filter((team: Team) => team.lobby === selectedLobby._id)  // filter based on lobby
             .map((team, i) => (
               <Team key={i} team={team.pokemons} />
             ))}

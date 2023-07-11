@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { slide as Menu } from 'react-burger-menu';
-import '../styles/burger-menu.css'
-import { set } from 'mongoose';
+import '../styles/burger-menu.css';
 
 interface LobbySidebarProps {
-  handleLobbySelect: (lobbyId: string) => void;
+  handleLobbySelect: (lobby: { _id: string; name: string}) => void;
 }
 
 interface Lobby {
@@ -29,8 +28,8 @@ const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect }) => {
 
   const closeMenu = () => setSidebarOpen(false);
   
-  const handleButtonClick = (lobbyId: string) => {
-    handleLobbySelect(lobbyId);
+  const handleButtonClick = (lobby: { _id: string; name: string }) => {
+    handleLobbySelect(lobby);
     closeMenu();
   }
 
@@ -49,7 +48,7 @@ const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect }) => {
         onStateChange={(state) => handleStateChange(state)}
       >
         {lobbies.map(lobby => (
-          <button key={lobby._id} onClick={() => handleButtonClick(lobby._id)}>
+          <button key={lobby._id} onClick={() => handleButtonClick(lobby)}>
             {lobby.name}
           </button>))}
           <button onClick={() => setSidebarOpen(false)} className='bm-burger-button-close'>Close menu</button>

@@ -12,6 +12,16 @@ app-body {
  }
 
 h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-align: center;
+    margin-left: 45%;
+    color: #d34d4d;
+    white-space: nowrap
+}
+
+h3 {
     font-size: 2.5rem;
     font-weight: 500;
     line-height: 1.2;
