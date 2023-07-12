@@ -10,7 +10,7 @@ function App() {
   const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '64a5564e3d4c0835cd854be7', name: 'MLC-GrandUnderground' });
 
     const handleLobbySelect = async (lobby: { _id: string; name: string }) => {
-        const response = await fetch(`http://localhost:3000/trainers/lobby/${lobby._id}`);
+        const response = await fetch(`https://pgr-draft-backend.vercel.app/api/lobby/${lobby._id}`);
         const data = await response.json();
         setTrainers(data.trainers);
         setSelectedTrainers([data.trainers[0], data.trainers[1]]);
@@ -18,7 +18,7 @@ function App() {
       }
 
       useEffect(() => {
-        fetch('http://localhost:3000/trainers/lobby/64a5564e3d4c0835cd854be7')
+        fetch('https://pgr-draft-backend.vercel.app/api/lobby/64a5564e3d4c0835cd854be7')
           .then(response => response.json())
           .then(data => {
             setTrainers(data.trainers);
