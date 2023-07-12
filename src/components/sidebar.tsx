@@ -17,7 +17,7 @@ const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const fetchLobbies = async () => {
-    const response = await fetch('http://localhost:3000/lobbies');
+    const response = await fetch('https://pgr-draft-backend.vercel.app/api/lobbies');
     const data = await response.json();
     setLobbies(data);
   }
