@@ -6,10 +6,11 @@ app-body {
     content: "";
     background-image: url('../addi.png');
     background-repeat: no-repeat;
-    background-size: 725px;
+    background-size: 750px;
     background-position: center;
+    background-color: rgb(59, 54, 53);
     opacity: 0.1;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
