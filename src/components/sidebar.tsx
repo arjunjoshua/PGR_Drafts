@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { slide as Menu } from 'react-burger-menu';
-import '../styles/burger-menu.css';
+import '../styles/sidebar.css';
 
 interface LobbySidebarProps {
   handleLobbySelect: (lobby: { _id: string; name: string}) => void;
@@ -48,7 +48,7 @@ const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect }) => {
         onStateChange={(state) => handleStateChange(state)}
       >
         {lobbies.map(lobby => (
-          <button key={lobby._id} onClick={() => handleButtonClick(lobby)}>
+          <button key={lobby._id} className='bm-burger-content' onClick={() => handleButtonClick(lobby)}>
             {lobby.name}
           </button>))}
           <button onClick={() => setSidebarOpen(false)} className='bm-burger-button-close'>Close menu</button>

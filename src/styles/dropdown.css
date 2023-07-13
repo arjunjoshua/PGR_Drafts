@@ -9,7 +9,8 @@
     display: inline-block;
     margin-left: 10%;
     padding: 10px;
-    color: rgb(240, 239, 244);
+    background-color: #524a4e; 
+    color: white;
   }
   
   .trainer-dropdown:hover {

@@ -8,11 +8,17 @@
     position: relative;
     left: 20px;
     top: 42px;
+    color: white;
   }
 
   .bm-burger-button-close {
     position: absolute;
     left: 20px;
-    bottom: 75px;
+    bottom: 75px; 
+    color: white;
+  }
+
+  .bm-burger-content {
+    color: white;
   }
 
