@@ -25,3 +25,17 @@
     top: 2.5px;
   }
 
+  .bm-burger-content:hover {
+    background-color: #47353e;
+  }
+
+  .bm-burger-content-selected {
+    color: #eabc9f;
+    position: relative;
+    left: 15px;
+    top: 2.5px;
+    border: rgb(243, 229, 229);
+    border-style: solid;
+    border-width: 3px 3px 3px 3px;
+  }
+

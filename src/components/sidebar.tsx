@@ -4,6 +4,7 @@ import '../styles/sidebar.css';
 
 interface LobbySidebarProps {
   handleLobbySelect: (lobby: { _id: string; name: string}) => void;
+  selectedLobbyID: string;
 }
 
 interface Lobby {
@@ -12,7 +13,7 @@ interface Lobby {
   trainers: string[];
 }
 
-const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect }) => {
+const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect, selectedLobbyID }) => {
   const [lobbies, setLobbies] = useState<Lobby[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -48,7 +49,12 @@ const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect }) => {
         onStateChange={(state) => handleStateChange(state)}
       >
         {lobbies.map(lobby => (
-          <button key={lobby._id} className='bm-burger-content' onClick={() => handleButtonClick(lobby)}>
+          <button 
+          key={lobby._id} 
+          className={lobby._id === selectedLobbyID ? 'bm-burger-content-selected' : 'bm-burger-content'}
+          onClick={() => handleButtonClick(lobby)}
+          autoFocus={lobby._id === selectedLobbyID}
+          >
             {lobby.name}
           </button>))}
           <button onClick={() => setSidebarOpen(false)} className='bm-burger-button-close'>Close menu</button>
