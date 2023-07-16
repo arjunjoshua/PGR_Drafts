@@ -7,7 +7,7 @@ import { Trainer } from './components/trainerDropdown';
 function App() {
   const [trainers, setTrainers] = useState([]);
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
-  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '64a5564e3d4c0835cd854be7', name: 'MLC-GrandUnderground' });
+  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '64b3d97ba05427be59779158', name: 'MLC-GrandUnderground' });
 
     const handleLobbySelect = async (lobby: { _id: string; name: string }) => {
         const response = await fetch(`https://pgr-draft-backend.vercel.app/api/lobby/${lobby._id}`);
@@ -18,7 +18,7 @@ function App() {
       }
 
       useEffect(() => {
-        fetch('https://pgr-draft-backend.vercel.app/api/lobby/64a5564e3d4c0835cd854be7')
+        fetch('https://pgr-draft-backend.vercel.app/api/lobby/64b3d97ba05427be59779158')
           .then(response => response.json())
           .then(data => {
             setTrainers(data.trainers);

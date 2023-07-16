@@ -12,13 +12,16 @@
   }
 
   .bm-burger-button-close {
-    position: absolute;
-    left: 20px;
-    bottom: 75px; 
-    color: white;
+    color: #eabc9f;
+    position: relative;
+    left: 15px;
+    top: 2.5px;
   }
 
   .bm-burger-content {
-    color: white;
+    color: rgb(243, 229, 229);
+    position: relative;
+    left: 15px;
+    top: 2.5px;
   }
 
