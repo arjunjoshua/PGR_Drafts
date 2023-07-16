@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className='app-body'>
-      <LobbySidebar handleLobbySelect={handleLobbySelect} />
+      <LobbySidebar handleLobbySelect={handleLobbySelect} selectedLobbyID={selectedLobby._id}/>
       <h1>{selectedLobby?.name}</h1>
       <TrainerDropdown trainers={trainers} selectedTrainers={selectedTrainers} setSelectedTrainers={setSelectedTrainers} selectedLobby={selectedLobby} />
     </div>
