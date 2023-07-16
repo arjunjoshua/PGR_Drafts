@@ -8,7 +8,7 @@
     position: relative;
     left: 20px;
     top: 42px;
-    color: white;
+    color: rgb(243, 229, 229);
   }
 
   .bm-burger-button-close {
@@ -30,12 +30,13 @@
   }
 
   .bm-burger-content-selected {
-    color: #eabc9f;
+    color: rgb(243, 229, 229);
     position: relative;
-    left: 15px;
+    left: 35px;
     top: 2.5px;
     border: rgb(243, 229, 229);
     border-style: solid;
     border-width: 3px 3px 3px 3px;
+    background-color: #47353e;
   }
 
