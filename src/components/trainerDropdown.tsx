@@ -39,7 +39,7 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             <h3>Trainer {index + 1}: </h3>
             <select className='trainer-dropdown' value={selectedTrainers[index]?._id || ''} onChange={handleChange(index)}>
               {trainers.map(trainer => (
-                <option key={trainer._id} value={trainer._id}>
+                <option key={trainer._id} value={trainer._id} disabled={selectedTrainers.some((selectedTrainer) => selectedTrainer && selectedTrainer._id === trainer._id)}>
                   {trainer.name}
                 </option>
               ))}
