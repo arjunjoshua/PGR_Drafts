@@ -1,4 +1,4 @@
-import '../styles/styles.css';
+import '../styles/pokemonGrid.css';
 
 type PokemonProps = {
     pokemonName: string;

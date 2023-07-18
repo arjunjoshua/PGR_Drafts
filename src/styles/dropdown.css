@@ -7,7 +7,7 @@
 
 .trainer-dropdown {
     display: inline-block;
-    margin-left: 10%;
+    margin-left: 50%;
     padding: 10px;
     background-color: #524a4e; 
     color: white;
@@ -15,4 +15,34 @@
   
   .trainer-dropdown:hover {
     background-color: #47353e;
+  }
+
+  /* small devices */
+  @media only screen and (min-width: 600px) {
+    .trainer-selection {
+      font-size: 0.3rem;
+    }
+    .trainer-dropdown {
+      margin-left: 0%;
+    }
+  }
+
+  /* medium devices */
+  @media only screen and (min-width: 768px) {
+    .trainer-selection {
+      font-size: 0.5rem;
+    }
+    .trainer-dropdown {
+      margin-left: 10%;
+    }
+  }
+
+  /* large devices */
+  @media only screen and (min-width: 992px) {
+    .trainer-selection {
+      font-size: 0.75rem;
+    }
+    .trainer-dropdown {
+      margin-left: 8%;
+    }
   }

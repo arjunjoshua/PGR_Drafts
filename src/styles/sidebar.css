@@ -1,8 +1,15 @@
 .bm-overlay-closed {
     width: 0;
     height: 0;
-    position: relative;
+    top:0;
+    left:0;
   }
+
+.bm-overlay {
+  position: fixed;
+  top:0;
+  left:0;
+}
 
   .bm-burger-button {
     position: relative;
@@ -38,5 +45,81 @@
     border-style: solid;
     border-width: 3px 3px 3px 3px;
     background-color: #47353e;
+  }
+
+  /* Small devices */
+  @media only screen and (min-width: 600px) {
+    .bm-burger-button {
+      position: relative;
+      left: 0%;
+      top: 0%;
+    }
+
+    .bm-burger-button-close {
+      left: 2%;
+      top: 4%;
+    }
+
+    .bm-burger-content {
+      left: 2%;
+      top: 4%;
+    }
+
+    .bm-burger-content-selected {
+      left: 10%;
+      bottom: 4%;
+    }
+
+  }
+
+  /* Tablets */
+  @media only screen and (min-width: 762px) {
+    .bm-burger-button {
+      position: relative;
+      left: 0%;
+      top: 0%;
+    }
+
+    .bm-burger-button-close {
+      left: 4%;
+      top: 5%;
+    }
+
+    .bm-burger-content {
+      left: 4%;
+      top: 5%;
+    }
+
+    .bm-burger-content-selected {
+      left: 14%;
+      bottom: 5%;
+    }
+
+  }
+
+
+  /* Laptops */
+  @media only screen and (min-width: 992px) {
+    .bm-burger-button {
+      position: relative;
+      left: 4%;
+      top: 7%;
+    }
+
+    .bm-burger-button-close {
+      left: 5%;
+      top: 6%;
+    }
+
+    .bm-burger-content {
+      left: 5%;
+      top: 6%;
+    }
+
+    .bm-burger-content-selected {
+      left: 20%;
+      top: 6%;
+    }
+
   }
 

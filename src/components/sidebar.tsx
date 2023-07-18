@@ -44,7 +44,7 @@ const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect, selected
         Select lobby
         </button>
 
-      <Menu 
+      <Menu className='bm-overlay'
         isOpen={sidebarOpen} 
         onStateChange={(state) => handleStateChange(state)}
       >
