@@ -43,9 +43,10 @@
       background-image: none;
     }
     h1 {
-      font-size: 0.5rem;
-      margin-left: 1%;
+      font-size: 1.6rem;
+      margin-left: 4%;
       line-height: 0.2;
+      margin-bottom: 7.5%;
     }
     /* h3 {
       font-size: 1.1rem;
@@ -68,8 +69,9 @@
   /* Large devices (992px and up) */
   @media only screen and (min-width: 992px) {
     h1 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       margin-left: 38%;
+      line-height: 1.2;
     }
     /* h3 {
       font-size: 2rem;

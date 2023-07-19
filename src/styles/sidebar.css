@@ -99,10 +99,13 @@
 
   /* Laptops */
   @media only screen and (min-width: 992px) {
+    .bm-overlay {
+      background-color: #201e1e;
+    }
     .bm-burger-button {
       position: relative;
       left: 4%;
-      top: 7%;
+      top: 12%;
     }
 
     .bm-burger-button-close {
