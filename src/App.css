@@ -38,11 +38,15 @@
   } */
   
   /* Small devices (600px and up) */
-  @media only screen and (min-width: 600px) {
+  @media only screen and (max-width: 600px) {
+    .app-body::before{
+      background-image: none;
+    }
     h1 {
-      font-size: 0.5rem;
-      margin-left: 2.5%;
-      line-height: 0.4;
+      font-size: 1.6rem;
+      margin-left: 4%;
+      line-height: 0.2;
+      margin-bottom: 7.5%;
     }
     /* h3 {
       font-size: 1.1rem;
@@ -51,7 +55,7 @@
   }
   
   /* Medium devices (768px and up) */
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 600px) {
     h1 {
       font-size: 2rem;
       margin-left: 13%;
@@ -65,8 +69,9 @@
   /* Large devices (992px and up) */
   @media only screen and (min-width: 992px) {
     h1 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       margin-left: 38%;
+      line-height: 1.2;
     }
     /* h3 {
       font-size: 2rem;

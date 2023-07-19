@@ -18,22 +18,25 @@
   }
 
   /* small devices */
-  @media only screen and (min-width: 600px) {
+  @media only screen and (max-width: 600px) {
     .trainer-selection {
-      font-size: 0.3rem;
+      font-size: 0.25rem;
+      margin-bottom: 2px;
     }
     .trainer-dropdown {
       margin-left: 0%;
+      padding: 2px;
     }
   }
 
   /* medium devices */
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 600px) {
     .trainer-selection {
       font-size: 0.5rem;
     }
     .trainer-dropdown {
       margin-left: 10%;
+      padding: 5px;
     }
   }
 
@@ -44,5 +47,6 @@
     }
     .trainer-dropdown {
       margin-left: 8%;
+      padding: 10px;
     }
   }

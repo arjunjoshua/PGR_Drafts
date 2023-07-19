@@ -31,11 +31,6 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -55,15 +50,28 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media only screen and (max-width: 600px) {
+  body {
+    flex-direction: column;
+    place-items: top;
+    margin-top: 10%;
   }
-  a:hover {
-    color: #747bff;
-  }
+
   button {
-    background-color: #f9f9f9;
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+    border-radius: 7px;
   }
-} */
+}
+
+@media only screen and (min-width: 600px) {
+  body {
+    place-items: center;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  body {
+    place-items: center;
+  }
+}
