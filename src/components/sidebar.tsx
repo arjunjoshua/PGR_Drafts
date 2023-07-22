@@ -11,6 +11,7 @@ interface Lobby {
   _id: string;
   name: string;
   trainers: string[];
+  priority: number;
 }
 
 const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect, selectedLobbyID }) => {
@@ -20,6 +21,7 @@ const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect, selected
   const fetchLobbies = async () => {
     const response = await fetch('https://pgr-draft-backend.vercel.app/api/lobbies');
     const data = await response.json();
+    data.sort((a: Lobby, b: Lobby) => a.priority - b.priority);
     setLobbies(data);
   }
 
