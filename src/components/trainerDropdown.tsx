@@ -1,13 +1,17 @@
-//import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Team from './team';
 import '../styles/dropdown.css'
 import '../App.css'
+import { set } from 'mongoose';
 
 export interface Trainer {
   _id: string;
   name: string;
   teams: Team[];
 }
+
+const [ showInput, setShowInput ] = useState<number | null>(null); // null = no input, 0 = input for trainer 1, 1 = input for trainer 2
+const [ pokemonName, setPokemonName ] = useState<string>('');
 
 interface Team {
   _id: string;
@@ -20,9 +24,10 @@ interface TrainerDropdownProps {
   selectedTrainers: (Trainer | null)[];
   setSelectedTrainers: React.Dispatch<React.SetStateAction<(Trainer | null)[]>>;
   selectedLobby: { _id: string; name: string };
+  addPokemonToTrainer: (trainerId: string, pokemonName: string) => void;
 }
 
-const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby }) => {
+const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby, addPokemonToTrainer }) => {
   const handleChange = (index: number) => (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTrainerId = event.target.value;
     const newSelectedTrainer = trainers.find(trainer => trainer._id === selectedTrainerId);
@@ -49,6 +54,23 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             .map((team, i) => (
               <Team key={i} team={team.pokemons} />
             ))}
+            <button className='add-pokemon-button' onClick={() => setShowInput(index)}>Add Pokemon</button>
+            {showInput === index && (
+              <div>
+                <input
+                 type='text'
+                  placeholder='Pokemon Name'
+                  value={pokemonName}
+                  onChange={(event) => setPokemonName(event.target.value)}
+               />
+              <button className='mon-submit' onClick={() => {
+              setShowInput(null)
+              addPokemonToTrainer(selectedTrainers[index]!._id, pokemonName)
+              setPokemonName('')}}
+              >
+              Submit</button>
+            </div>
+            )}
             </div>
         </div>
       ))}
