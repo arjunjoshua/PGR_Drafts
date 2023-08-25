@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Team from './team';
 import '../styles/dropdown.css'
 import '../App.css'
@@ -9,9 +9,6 @@ export interface Trainer {
   name: string;
   teams: Team[];
 }
-
-const [ showInput, setShowInput ] = useState<number | null>(null); // null = no input, 0 = input for trainer 1, 1 = input for trainer 2
-const [ pokemonName, setPokemonName ] = useState<string>('');
 
 interface Team {
   _id: string;
@@ -28,6 +25,11 @@ interface TrainerDropdownProps {
 }
 
 const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby, addPokemonToTrainer }) => {
+  const [ showInput, setShowInput ] = useState<number | null>(null); // null = no input, 0 = input for trainer 1, 1 = input for trainer 2
+  const [ pokemonName, setPokemonName ] = useState<string>('');
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  
   const handleChange = (index: number) => (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTrainerId = event.target.value;
     const newSelectedTrainer = trainers.find(trainer => trainer._id === selectedTrainerId);
@@ -60,8 +62,8 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
                 <input
                  type='text'
                   placeholder='Pokemon Name'
-                  value={pokemonName}
-                  onChange={(event) => setPokemonName(event.target.value)}
+                  ref={inputRef}
+                  onBlur={() => setPokemonName(inputRef.current!.value)}
                />
               <button className='mon-submit' onClick={() => {
               setShowInput(null)
