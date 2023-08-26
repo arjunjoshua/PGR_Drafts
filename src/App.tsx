@@ -16,15 +16,17 @@ function App() {
       try {
         await fetch(`${backend_url}/addPokemon`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 trainerId,
                 pokemonName,
-                selectedLobbyId: selectedLobby._id
+                lobbyId: selectedLobby._id
             })
         });
+        //console.log(trainerId, pokemonName, selectedLobby._id)
 
         // Notify the user that the request was successful
         window.alert("Pokémon added successfully!");
