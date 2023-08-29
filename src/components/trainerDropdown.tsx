@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Team from './team';
 import '../styles/dropdown.css'
 import '../App.css'
-import { set } from 'mongoose';
+// import { set } from 'mongoose';
 
 export interface Trainer {
   _id: string;
@@ -27,6 +27,7 @@ interface TrainerDropdownProps {
 const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby, addPokemonToTrainer }) => {
   const [ showInput, setShowInput ] = useState<number | null>(null); // null = no input, 0 = input for trainer 1, 1 = input for trainer 2
   const [ pokemonName, setPokemonName ] = useState<string>('');
+  const [ selectedTeamId, setSelectedTeamId ] = useState<string>('');
 
   const inputRef = useRef<HTMLInputElement>(null);
   
@@ -54,9 +55,20 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
           {selectedTrainers[index] && selectedTrainers[index]!.teams
             .filter((team: Team) => team.lobby === selectedLobby._id)  // filter based on lobby
             .map((team, i) => (
-              <Team key={i} team={team.pokemons} />
+              <div key={team._id}>
+              <Team team={team.pokemons} />
+              <button 
+                className='add-pokemon-button' 
+                onClick={() => {
+                    setShowInput(index);
+                    setSelectedTeamId(team._id);  // Save the ID of the team to which we want to add a Pokemon
+                }}
+            >
+                Add Pokemon to this Team
+            </button>
+            </div>
             ))}
-            <button className='add-pokemon-button' onClick={() => setShowInput(index)}>Add Pokemon</button>
+            {/* <button className='add-pokemon-button' onClick={() => setShowInput(index)}>Add Pokemon</button> */}
             {showInput === index && (
               <div>
                 <input
@@ -67,7 +79,7 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
                />
               <button className='mon-submit' onClick={() => {
               setShowInput(null)
-              addPokemonToTrainer(selectedTrainers[index]!._id, pokemonName)
+              addPokemonToTrainer(selectedTeamId, pokemonName)
               setPokemonName('')}}
               >
               Submit</button>

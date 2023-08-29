@@ -12,21 +12,19 @@ function App() {
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
   const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '64b3d97ba05427be59779158', name: 'MLC-GrandUnderground' });
 
-  const addPokemonToTrainer = async (trainerId: string, pokemonName: string) => {  
-      try {
+  const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {  
+    console.log(teamID, pokemonName)  
+    try {
         await fetch(`${backend_url}/addPokemon`, {
             method: 'POST',
-            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                trainerId,
+                teamID,
                 pokemonName,
-                lobbyId: selectedLobby._id
             })
         });
-        //console.log(trainerId, pokemonName, selectedLobby._id)
 
         // Notify the user that the request was successful
         window.alert("Pokémon added successfully!");
