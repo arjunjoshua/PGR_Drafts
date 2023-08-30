@@ -1,0 +1,22 @@
+.pokemon-select
+{
+    display: inline-block;
+    color: #f4f7f5;
+}
+
+.pokemon-select__menu {
+    background-color: #524a4e;
+}
+
+.pokemon-select__control {
+    background-color: #524a4e;
+}
+
+.pokemon-select__menu:hover {
+    background-color: #47353e;
+}
+
+.pokemon-select__option:hover {
+    background-color: #8a3560e2;
+}
+

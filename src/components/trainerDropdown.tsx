@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Team from './team';
 import '../styles/dropdown.css'
 import '../App.css'
-// import { set } from 'mongoose';
+import PokemonSelectComponent from './pokemonSelect';
 
 export interface Trainer {
   _id: string;
@@ -24,12 +24,16 @@ interface TrainerDropdownProps {
   addPokemonToTrainer: (trainerId: string, pokemonName: string) => void;
 }
 
-const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby, addPokemonToTrainer }) => {
-  const [ showInput, setShowInput ] = useState<number | null>(null); // null = no input, 0 = input for trainer 1, 1 = input for trainer 2
-  const [ pokemonName, setPokemonName ] = useState<string>('');
-  const [ selectedTeamId, setSelectedTeamId ] = useState<string>('');
+type PokemonOption = {
+  value: string;
+  label: string;
+};
 
-  const inputRef = useRef<HTMLInputElement>(null);
+
+const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby, addPokemonToTrainer }) => {
+  const [ showInput, setShowInput ] = useState<boolean>(false); 
+  const [ selectedPokemon, setSelectedPokemon ] = useState<PokemonOption | null>(null);
+  const [ selectedTeamId, setSelectedTeamId ] = useState<string>('');
   
   const handleChange = (index: number) => (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTrainerId = event.target.value;
@@ -55,35 +59,44 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
           {selectedTrainers[index] && selectedTrainers[index]!.teams
             .filter((team: Team) => team.lobby === selectedLobby._id)  // filter based on lobby
             .map((team, i) => (
-              <div key={team._id}>
+              <div key={team._id} className='team-container'>
               <Team team={team.pokemons} />
               <button 
                 className='add-pokemon-button' 
                 onClick={() => {
-                    setShowInput(index);
+                    setShowInput(true);
                     setSelectedTeamId(team._id);  // Save the ID of the team to which we want to add a Pokemon
                 }}
             >
-                Add Pokemon to this Team
+                Add a Pokémon
             </button>
             </div>
             ))}
             {/* <button className='add-pokemon-button' onClick={() => setShowInput(index)}>Add Pokemon</button> */}
-            {showInput === index && (
-              <div>
-                <input
-                 type='text'
-                  placeholder='Pokemon Name'
-                  ref={inputRef}
-                  onBlur={() => setPokemonName(inputRef.current!.value)}
-               />
-              <button className='mon-submit' onClick={() => {
-              setShowInput(null)
-              addPokemonToTrainer(selectedTeamId, pokemonName)
-              setPokemonName('')}}
-              >
-              Submit</button>
-            </div>
+            {showInput && (
+              <div className="modal" onClick={(e) => {
+                if (e.target === e.currentTarget) {
+                  setShowInput(false);
+                }
+              }}>
+                <div className="modal-content">
+                  <PokemonSelectComponent 
+                   selectedPokemon={selectedPokemon}
+                   setSelectedPokemon={setSelectedPokemon} />
+                  <button 
+                    className='mon-submit' 
+                    onClick={() => {
+                      setShowInput(false);
+                      if (selectedPokemon){
+                      addPokemonToTrainer(selectedTeamId, selectedPokemon?.value);
+                      }
+                      setSelectedPokemon(null);
+                    }}
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
             )}
             </div>
         </div>

@@ -5,6 +5,56 @@
     font-size: 0.75rem;
   }
 
+  .trainer-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-color: beige;
+    border-width: 1px;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+  }
+  
+  .modal-content {
+    background-color: #47353ed7;
+    padding: 20px;
+    border-radius: 5px;
+    width: 280px; /* Or whatever width you want */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid #f0d9cb;
+  }
+
+  .add-pokemon-button {
+    position: relative;
+    left: 50%;
+    color: rgb(243, 229, 229);
+    width: 100px;
+  }
+
+  .mon-submit {
+    margin-left: 5%;
+    color: rgb(243, 229, 229);
+    width: 80px;
+  }
+
+  .team-container {
+    display: grid;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
 .trainer-dropdown {
     display: inline-block;
     margin-left: 50%;

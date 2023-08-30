@@ -27,7 +27,7 @@ function App() {
         });
 
         // Notify the user that the request was successful
-        window.alert("Pokémon added successfully!");
+        window.alert("Pokémon added successfully! Click OK or refresh to see the changes.");
         // Refetch the lobby data or handle the response as needed
         handleLobbySelect(selectedLobby); // for instance
     } catch (error) {
