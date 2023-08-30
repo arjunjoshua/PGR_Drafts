@@ -1,4 +1,3 @@
-import React from 'react';
 import Select from 'react-select';
 import pokemonNames from '../../scripts/pokemonNames.json';
 import '../styles/pokemonSelect.css';

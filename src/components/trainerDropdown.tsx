@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Team from './team';
 import '../styles/dropdown.css'
 import '../App.css'
@@ -58,7 +58,7 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             </select>
           {selectedTrainers[index] && selectedTrainers[index]!.teams
             .filter((team: Team) => team.lobby === selectedLobby._id)  // filter based on lobby
-            .map((team, i) => (
+            .map((team) => (
               <div key={team._id} className='team-container'>
               <Team team={team.pokemons} />
               <button 
