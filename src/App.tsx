@@ -12,8 +12,7 @@ function App() {
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
   const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '64b3d97ba05427be59779158', name: 'MLC-GrandUnderground' });
 
-  const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {  
-    console.log(teamID, pokemonName)  
+  const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {   
     try {
         await fetch(`${backend_url}/addPokemon`, {
             method: 'POST',
@@ -33,6 +32,29 @@ function App() {
     } catch (error) {
         console.error("Error adding Pokémon:", error);
     }
+  };
+
+  const removePokemonFromTrainer = async (teamID: string, pokemonName: string) => {
+    console.log(teamID, pokemonName);
+    try {
+        await fetch(`${backend_url}/removePokemon`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                teamID,
+                pokemonName,
+            })
+        });
+        
+        // Notify the user that the request was successful
+        window.alert("Pokémon removed successfully! Click OK or refresh to see the changes.");
+        // Refetch the lobby data or handle the response as needed
+        handleLobbySelect(selectedLobby); // for instance
+    } catch (error) {
+        console.error("Error removing Pokémon:", error);
+    } 
   };
   
   const handleLobbySelect = async (lobby: { _id: string; name: string }) => {
@@ -70,7 +92,7 @@ function App() {
       <h1>{selectedLobby?.name}</h1>
       <TrainerDropdown trainers={trainers} selectedTrainers={selectedTrainers} 
       setSelectedTrainers={setSelectedTrainers} selectedLobby={selectedLobby} 
-      addPokemonToTrainer={addPokemonToTrainer} 
+      addPokemonToTrainer={addPokemonToTrainer} removePokemonFromTrainer={removePokemonFromTrainer}
       />
     </div>
   );

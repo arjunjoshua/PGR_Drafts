@@ -3,6 +3,7 @@ import Team from './team';
 import '../styles/dropdown.css'
 import '../App.css'
 import PokemonSelectComponent from './pokemonSelect';
+import PokemonRemoveComponent from './pokemonRemove';
 
 export interface Trainer {
   _id: string;
@@ -22,6 +23,7 @@ interface TrainerDropdownProps {
   setSelectedTrainers: React.Dispatch<React.SetStateAction<(Trainer | null)[]>>;
   selectedLobby: { _id: string; name: string };
   addPokemonToTrainer: (trainerId: string, pokemonName: string) => void;
+  removePokemonFromTrainer: (trainerId: string, pokemonName: string) => void;
 }
 
 type PokemonOption = {
@@ -30,10 +32,12 @@ type PokemonOption = {
 };
 
 
-const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby, addPokemonToTrainer }) => {
+const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby, addPokemonToTrainer, removePokemonFromTrainer }) => {
   const [ showInput, setShowInput ] = useState<boolean>(false); 
+  const [ showInputRemove, setShowInputRemove ] = useState<boolean>(false);
   const [ selectedPokemon, setSelectedPokemon ] = useState<PokemonOption | null>(null);
   const [ selectedTeamId, setSelectedTeamId ] = useState<string>('');
+  const [ selectedTeamPokemon, setSelectedTeamPokemon ] = useState<string[]>([]); // [
   
   const handleChange = (index: number) => (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTrainerId = event.target.value;
@@ -61,6 +65,7 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             .map((team) => (
               <div key={team._id} className='team-container'>
               <Team team={team.pokemons} />
+              <div>
               <button 
                 className='add-pokemon-button' 
                 onClick={() => {
@@ -70,9 +75,19 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             >
                 Add a Pokémon
             </button>
+            <button 
+                className='remove-pokemon-button' 
+                onClick={() => {
+                    setShowInputRemove(true);
+                    setSelectedTeamId(team._id); 
+                    setSelectedTeamPokemon(team.pokemons);
+                }}
+            >
+                Remove a Pokémon
+            </button>
+            </div>
             </div>
             ))}
-            {/* <button className='add-pokemon-button' onClick={() => setShowInput(index)}>Add Pokemon</button> */}
             {showInput && (
               <div className="modal" onClick={(e) => {
                 if (e.target === e.currentTarget) {
@@ -91,6 +106,32 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
                       addPokemonToTrainer(selectedTeamId, selectedPokemon?.value);
                       }
                       setSelectedPokemon(null);
+                    }}
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            )}
+            {showInputRemove && (
+              <div className="modal" onClick={(e) => {
+                if (e.target === e.currentTarget) {
+                  setShowInputRemove(false);
+                }
+              }}>
+                <div className="modal-content">
+                  <PokemonRemoveComponent 
+                   selectedPokemon={selectedPokemon}
+                   setSelectedPokemon={setSelectedPokemon}
+                   team={selectedTeamPokemon}/>
+                  <button 
+                    className='mon-submit' 
+                    onClick={() => {
+                      setShowInputRemove(false);
+                      if (selectedPokemon){
+                      removePokemonFromTrainer(selectedTeamId, selectedPokemon?.value);
+                      }
+                      setSelectedTeamPokemon([]);
                     }}
                   >
                     Submit
