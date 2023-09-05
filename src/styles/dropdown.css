@@ -37,7 +37,15 @@
 
   .add-pokemon-button {
     position: relative;
-    left: 50%;
+    left: 41%;
+    color: rgb(243, 229, 229);
+    width: 100px;
+  }
+
+  .remove-pokemon-button {
+    position: relative;
+    left: 41%;
+    margin-left: 6%;
     color: rgb(243, 229, 229);
     width: 100px;
   }

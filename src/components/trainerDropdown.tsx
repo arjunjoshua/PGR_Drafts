@@ -65,6 +65,7 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             .map((team) => (
               <div key={team._id} className='team-container'>
               <Team team={team.pokemons} />
+              <div>
               <button 
                 className='add-pokemon-button' 
                 onClick={() => {
@@ -75,7 +76,7 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
                 Add a Pokémon
             </button>
             <button 
-                className='add-pokemon-button' 
+                className='remove-pokemon-button' 
                 onClick={() => {
                     setShowInputRemove(true);
                     setSelectedTeamId(team._id); 
@@ -84,6 +85,7 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             >
                 Remove a Pokémon
             </button>
+            </div>
             </div>
             ))}
             {showInput && (
