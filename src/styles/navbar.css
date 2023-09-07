@@ -20,3 +20,21 @@
     background-color: #555;
     color: #f0d9cb;;
 }
+
+.navbar .container {
+    max-width: 100% !important;
+}
+
+.logo {
+    height: 70px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.brand-text {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #f0d9cb;
+    white-space: nowrap;
+}

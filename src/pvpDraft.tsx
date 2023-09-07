@@ -87,7 +87,7 @@ function PvpDraft() {
   }
   
   return (
-    <div className='app-body'>
+    <div className='pgr-body'>
       <LobbySidebar handleLobbySelect={handleLobbySelect} selectedLobbyID={selectedLobby._id}/>
       <h1>{selectedLobby?.name}</h1>
       <TrainerDropdown trainers={trainers} selectedTrainers={selectedTrainers} 

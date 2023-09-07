@@ -1,22 +1,22 @@
-.app-body {
+.pgr-body {
     position: relative;
+    background-color: #373636;
+    width: 100%;
+    height: 100%;
   }
   
-  .app-body::before {
+  /* .pgr-body::before {
     content: "";
-    background-image: url('../addi.png');
-    background-repeat: no-repeat;
-    background-position: center;
     background-color: #423a3a;
     background-size: 43%;
     opacity: 0.1;
     position: fixed;
-    top: 10%;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 90%;
+    height: 100%;
     pointer-events: none;
-  }
+  } */
   
   h1 {
     font-size: 3rem;
@@ -39,9 +39,9 @@
   
   /* Small devices (600px and up) */
   @media only screen and (max-width: 600px) {
-    .app-body::before{
+    /* .pgr-body::before{
       background-image: none;
-    }
+    } */
     h1 {
       font-size: 1.6rem;
       margin-left: 4%;

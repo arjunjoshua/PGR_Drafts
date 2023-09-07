@@ -1,8 +1,8 @@
 function Home() {
     return (
-    <div>
+    <div className="pgr-body">
         <h1>Welcome to PoGo Raids!</h1>
-        </div>
+    </div>
     );
 }
 
