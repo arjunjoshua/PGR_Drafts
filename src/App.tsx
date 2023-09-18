@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import { Trainer } from './components/trainerDropdown';
 import LoadingSpinner from './components/loadingSpinner';
 import { backend_url } from './constants/constants';
+import ScoreboardButton from './components/scoreboardButton';
+import ReportResultButton from './components/reportResultButton';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -88,7 +90,11 @@ function App() {
   
   return (
     <div className='app-body'>
+      <div className='top-container'>
       <LobbySidebar handleLobbySelect={handleLobbySelect} selectedLobbyID={selectedLobby._id}/>
+      <ScoreboardButton/>
+      <ReportResultButton/>
+      </div>
       <h1>{selectedLobby?.name}</h1>
       <TrainerDropdown trainers={trainers} selectedTrainers={selectedTrainers} 
       setSelectedTrainers={setSelectedTrainers} selectedLobby={selectedLobby} 
