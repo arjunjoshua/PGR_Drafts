@@ -120,7 +120,7 @@ const handleRefresh = async (lobby: { _id: string; name: string }, selectedTrain
       <div className='top-container'>
       <LobbySidebar handleLobbySelect={handleLobbySelect} selectedLobbyID={selectedLobby._id}/>
       <ScoreboardButton/>
-      <ReportResultButton/>
+      <ReportResultButton trainer1={selectedTrainers[0]?.name || "Trainer 1"} trainer2={selectedTrainers[1]?.name || "Trainer 2"}/>
       </div>
       <h1>{selectedLobby?.name}</h1>
       <TrainerDropdown trainers={trainers} selectedTrainers={selectedTrainers} 
