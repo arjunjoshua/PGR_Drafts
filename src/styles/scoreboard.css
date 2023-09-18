@@ -1,0 +1,13 @@
+.scoreboard-button {
+    position: relative;
+    margin-left: 370px;
+    top: 2%;
+    color: rgb(243, 229, 229);
+}
+
+.report-button {
+    position: relative;
+    margin-left: 20px;
+    top: 2%;
+    color: rgb(243, 229, 229);
+}
