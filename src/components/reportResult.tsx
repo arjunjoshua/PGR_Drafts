@@ -8,9 +8,10 @@ interface ReportResultProps {
     trainer1ID: string,
     trainer2ID: string,
     setShowReportResult: (value: boolean) => void;
+    lobbyID: string;
 }
 
-const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReportResult} : ReportResultProps) => {
+const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReportResult, lobbyID} : ReportResultProps) => {
     const handleWinner = async (winnerID: string, winnerName: string) => {
         try {
             await fetch(`${backend_url}/recordResult`, {
@@ -23,6 +24,7 @@ const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReport
                 trainer2ID,
                 winner: winnerID,
                 winnerName,
+                lobbyID,
             })
         });
         setShowReportResult(false);
