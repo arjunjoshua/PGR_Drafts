@@ -4,6 +4,7 @@ import PvpTeams from './components/pvpTeams';
 import Navbar from './components/navbar';
 import Scoreboard from './components/scoreboard';
 import HomePage from './components/homePage';
+import RaidDraft from './components/raidDraft';
 
 function App() {
     return (
@@ -13,7 +14,7 @@ function App() {
                 <Routes>
                     <Route path="/" Component={HomePage}/>
                     <Route path="/pvp-draft-teams" Component={PvpTeams}/>
-                    <Route path="/points-table" Component={Scoreboard} />
+                    <Route path="/raid-draft" Component={RaidDraft} />
                 </Routes>
             </div>
         </Router>
