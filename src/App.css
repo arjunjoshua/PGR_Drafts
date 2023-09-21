@@ -37,14 +37,14 @@
   }
 
   
-  /* h3 {
+   h3 {
     font-size: 2.5rem;
     font-weight: 500;
     line-height: 1.2;
     text-align: center;
     margin-left: 52%;
-    color: #dfd0d0;
-  } */
+    color: #f0d9cb;
+  }
   
   /* Small devices (600px and up) */
   @media only screen and (max-width: 600px) {

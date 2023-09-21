@@ -12,8 +12,8 @@ function Navbar() {
             </Link>
             <div className='navbar-container'>
             <ul>
-                <li><Link to="/pvp-draft-teams">PvP Draft Teams</Link></li>
-                <li><Link to="/points-table">Points Table</Link></li>
+                <li><Link to="/pvp-draft-teams">PvP Draft</Link></li>
+                <li><Link to="/raid-draft">Raid Draft</Link></li>
             </ul>
             </div>
         </nav>
