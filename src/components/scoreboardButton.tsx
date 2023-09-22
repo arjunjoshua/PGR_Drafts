@@ -8,7 +8,7 @@ interface ScoreboardProps {
 };
 
 const ScoreboardButton = ({selectedLobbyID, lobbyName}: ScoreboardProps) => {
-    const [showScoreboard, setShowScoreboard] = useState(true);
+    const [showScoreboard, setShowScoreboard] = useState(false);
     return (
         <div>
         <button className='scoreboard-button' onClick={() => setShowScoreboard(true)}>Scoreboard</button>

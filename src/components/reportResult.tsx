@@ -14,7 +14,7 @@ interface ReportResultProps {
 const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReportResult, lobbyID} : ReportResultProps) => {
     const handleWinner = async (winnerID: string, winnerName: string) => {
         try {
-            await fetch(`${backend_url}/recordResult`, {
+            const response = await fetch(`${backend_url}/recordResult`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -27,8 +27,10 @@ const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReport
                 lobbyID,
             })
         });
+        const responseData= await response.json();
+        window.alert(responseData.message);     
         setShowReportResult(false);
-        window.alert("Result recorded successfully!");
+        
         } catch (error) {
             console.error("Error recording result:", error);
         }
