@@ -9,10 +9,12 @@ interface ReportResultProps {
     trainer2ID: string,
     setShowReportResult: (value: boolean) => void;
     lobbyID: string;
+    setLoading: (value: boolean) => void;
 }
 
-const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReportResult, lobbyID} : ReportResultProps) => {
+const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReportResult, lobbyID, setLoading} : ReportResultProps) => {
     const handleWinner = async (winnerID: string, winnerName: string) => {
+        setLoading(true);
         try {
             const response = await fetch(`${backend_url}/recordResult`, {
             method: "POST",
@@ -34,6 +36,7 @@ const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReport
         } catch (error) {
             console.error("Error recording result:", error);
         }
+        setLoading(false);
     }
 
     return (
