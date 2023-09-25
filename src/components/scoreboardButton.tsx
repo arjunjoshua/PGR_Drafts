@@ -4,16 +4,16 @@ import Scoreboard from './scoreboard';
 
 interface ScoreboardProps {
     selectedLobbyID: string;
-    lobbyName: string;
+    setLoading: (value: boolean) => void;
 };
 
-const ScoreboardButton = ({selectedLobbyID, lobbyName}: ScoreboardProps) => {
+const ScoreboardButton = ({selectedLobbyID, setLoading}: ScoreboardProps) => {
     const [showScoreboard, setShowScoreboard] = useState(false);
     return (
         <div>
         <button className='scoreboard-button' onClick={() => setShowScoreboard(true)}>Scoreboard</button>
         {showScoreboard &&
-        <Scoreboard selectedLobbyID={selectedLobbyID} lobbyName={lobbyName} setShowScoreboard={setShowScoreboard}/>}
+        <Scoreboard selectedLobbyID={selectedLobbyID} setShowScoreboard={setShowScoreboard} setLoading={setLoading}/>}
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import { backend_url } from "../constants/constants";
 import { useEffect, useState } from "react";
 import '../styles/scoreboard.css'
+import '../styles/scoreboardTable.css'
 
 interface Trainer {
     name: string;
@@ -13,14 +14,16 @@ interface Trainer {
 
 interface ScoreboardProps {
     selectedLobbyID: string;
-    lobbyName: string;
     setShowScoreboard: (value: boolean) => void;
+    setLoading: (value: boolean) => void;
 };
 
-const Scoreboard = ({selectedLobbyID, lobbyName, setShowScoreboard}: ScoreboardProps) => {
+const Scoreboard = ({selectedLobbyID, setShowScoreboard, setLoading}: ScoreboardProps) => {
     const [trainers, setTrainers] = useState<Trainer[]>([]);
+    const [fetchingScores, setFetchingScores] = useState(false);
 
     const fetchScores = async () => {
+        setFetchingScores(true);
         try{
             const response = await fetch(`${backend_url}/lobby/lobbyScore?lobbyID=${selectedLobbyID}`, {
                 method: 'GET',
@@ -38,10 +41,12 @@ const Scoreboard = ({selectedLobbyID, lobbyName, setShowScoreboard}: ScoreboardP
                 points: score.points
             }));
             setTrainers(fetchedTrainers);
+            console.log("Trainer data set");
         }
         catch (error) {
             console.error("Error fetching scores:", error);
         }
+        setFetchingScores(false);
     }
 
     useEffect(() => {
@@ -55,7 +60,6 @@ const Scoreboard = ({selectedLobbyID, lobbyName, setShowScoreboard}: ScoreboardP
             }
           }}>
             <div className='scoreboard-modal-content'>
-            {/* <h1>{lobbyName}</h1> */}
             <table>
                 <thead>
                     <tr>
@@ -67,21 +71,27 @@ const Scoreboard = ({selectedLobbyID, lobbyName, setShowScoreboard}: ScoreboardP
                         <th>Points</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {trainers.map((trainer, index) => (
-                        <tr key={index}>
-                            <td>{trainer.name}</td>
-                            <td>{trainer.gamesPlayed}</td>
-                            <td>{trainer.won}</td>
-                            <td>{trainer.lost}</td>
-                            <td>{trainer.tied}</td>
-                            <td>{trainer.points}</td>
+                    <tbody>
+                    {fetchingScores ? (
+                        <tr>
+                            <td colSpan={6} className="center-td">Populating data......</td>
                         </tr>
-                    ))}
+                    ) : (
+                        trainers.map((trainer, index) => (
+                            <tr key={index}>
+                                <td>{trainer.name}</td>
+                                <td>{trainer.gamesPlayed}</td>
+                                <td>{trainer.won}</td>
+                                <td>{trainer.lost}</td>
+                                <td>{trainer.tied}</td>
+                                <td>{trainer.points}</td>
+                            </tr>
+                        ))
+                    )}
                 </tbody>
             </table>
             </div>
-        </div>
+         </div>
     )
 }
 
