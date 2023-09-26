@@ -95,7 +95,7 @@ function PvpTeams() {
     <div className='app-body'>
       <div className='top-container'>
       <LobbySidebar handleLobbySelect={handleLobbySelect} selectedLobbyID={selectedLobby._id}/>
-      <ScoreboardButton selectedLobbyID={selectedLobby._id} setLoading={setLoading}/>
+      <ScoreboardButton selectedLobbyID={selectedLobby._id}/>
       <ReportResultButton trainer1={selectedTrainers[0]?.name || "Trainer 1"} trainer2={selectedTrainers[1]?.name || "Trainer 2"}
       trainer1ID={selectedTrainers[0]?._id || '0'} trainer2ID={selectedTrainers[1]?._id || '0'} lobbyID={selectedLobby._id} 
       setLoading={setLoading}/>
