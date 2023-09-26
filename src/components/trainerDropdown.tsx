@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Team from './team';
-import '../styles/dropdown.css'
-import '../App.css'
-import PokemonSelectComponent from './pokemonSelect';
-import PokemonRemoveComponent from './pokemonRemove';
+import '../styles/dropdown.css';
+import '../App.css';
 import PokemonAddModal from './addPokemonModal';
 import PokemonRemoveModal from './removePokemonModal';
 
