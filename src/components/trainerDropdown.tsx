@@ -4,6 +4,8 @@ import '../styles/dropdown.css'
 import '../App.css'
 import PokemonSelectComponent from './pokemonSelect';
 import PokemonRemoveComponent from './pokemonRemove';
+import PokemonAddModal from './addPokemonModal';
+import PokemonRemoveModal from './removePokemonModal';
 
 export interface Trainer {
   _id: string;
@@ -88,57 +90,23 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             </div>
             </div>
             ))}
-            {showInput && (
-              <div className="modal" onClick={(e) => {
-                if (e.target === e.currentTarget) {
-                  setShowInput(false);
-                }
-              }}>
-                <div className="modal-content">
-                  <PokemonSelectComponent 
-                   selectedPokemon={selectedPokemon}
-                   setSelectedPokemon={setSelectedPokemon} />
-                  <button 
-                    className='mon-submit' 
-                    onClick={() => {
-                      setShowInput(false);
-                      if (selectedPokemon){
-                      addPokemonToTrainer(selectedTeamId, selectedPokemon?.value);
-                      }
-                      setSelectedPokemon(null);
-                    }}
-                  >
-                    Submit
-                  </button>
-                </div>
-              </div>
-            )}
-            {showInputRemove && (
-              <div className="modal" onClick={(e) => {
-                if (e.target === e.currentTarget) {
-                  setShowInputRemove(false);
-                }
-              }}>
-                <div className="modal-content">
-                  <PokemonRemoveComponent 
-                   selectedPokemon={selectedPokemon}
-                   setSelectedPokemon={setSelectedPokemon}
-                   team={selectedTeamPokemon}/>
-                  <button 
-                    className='mon-submit' 
-                    onClick={() => {
-                      setShowInputRemove(false);
-                      if (selectedPokemon){
-                      removePokemonFromTrainer(selectedTeamId, selectedPokemon?.value);
-                      }
-                      setSelectedTeamPokemon([]);
-                    }}
-                  >
-                    Submit
-                  </button>
-                </div>
-              </div>
-            )}
+            {showInput && <PokemonAddModal
+              showInput={showInput}
+              setShowInput={setShowInput}
+              selectedPokemon={selectedPokemon}
+              setSelectedPokemon={setSelectedPokemon}
+              selectedTeamId={selectedTeamId}
+              addPokemonToTrainer={addPokemonToTrainer}
+            />}
+            {showInputRemove && <PokemonRemoveModal
+              showInputRemove={showInputRemove}
+              setShowInputRemove={setShowInputRemove}
+              selectedPokemon={selectedPokemon}
+              setSelectedPokemon={setSelectedPokemon}
+              selectedTeamId={selectedTeamId}
+              removePokemonFromTrainer={removePokemonFromTrainer}
+              selectedTeamPokemon={selectedTeamPokemon}
+            />}
             </div>
         </div>
       ))}
