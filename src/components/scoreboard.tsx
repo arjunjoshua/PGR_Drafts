@@ -15,10 +15,9 @@ interface Trainer {
 interface ScoreboardProps {
     selectedLobbyID: string;
     setShowScoreboard: (value: boolean) => void;
-    setLoading: (value: boolean) => void;
 };
 
-const Scoreboard = ({selectedLobbyID, setShowScoreboard, setLoading}: ScoreboardProps) => {
+const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
     const [trainers, setTrainers] = useState<Trainer[]>([]);
     const [fetchingScores, setFetchingScores] = useState(false);
 
