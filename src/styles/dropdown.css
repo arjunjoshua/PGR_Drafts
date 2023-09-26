@@ -35,16 +35,17 @@
     border: 2px solid #f0d9cb;
   }
 
-  .add-pokemon-button {
+  .add-remove-container {
     position: relative;
     left: 41%;
+  }
+
+  .add-pokemon-button {
     color: rgb(243, 229, 229);
     width: 100px;
   }
 
   .remove-pokemon-button {
-    position: relative;
-    left: 41%;
     margin-left: 6%;
     color: rgb(243, 229, 229);
     width: 100px;
@@ -84,6 +85,39 @@
     .trainer-dropdown {
       margin-left: 0%;
       padding: 2px;
+    }
+    .add-remove-container {
+      position: relative;
+      left: 21%;
+    }
+    .add-pokemon-button {
+      color: rgb(243, 229, 229);
+      width: 60px;
+      height: 35px;
+      font-size: 0.5rem;
+    }
+    .remove-pokemon-button {
+      margin-left: 5%;
+      color: rgb(243, 229, 229);
+      width: 60px;
+      height: 35px;
+      font-size: 0.5rem;
+    }
+    .modal-content {
+      background-color: #47353ed7;
+      padding: 12px;
+      border-radius: 3px;
+      width: 240px; /* Or whatever width you want */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      border: 2px solid #f0d9cb;
+      height: 55px;
+    }
+    .mon-submit {
+      margin-left: 5%;
+      color: rgb(243, 229, 229);
+      width: 80px;
+      height: 35px;
+      font-size: 0.7rem;
     }
   }
 

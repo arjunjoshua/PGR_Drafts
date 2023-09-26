@@ -65,7 +65,7 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             .map((team) => (
               <div key={team._id} className='team-container'>
               <Team team={team.pokemons} />
-              <div>
+              <div className='add-remove-container'>
               <button 
                 className='add-pokemon-button' 
                 onClick={() => {

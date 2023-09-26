@@ -35,7 +35,6 @@ function App() {
   };
 
   const removePokemonFromTrainer = async (teamID: string, pokemonName: string) => {
-    console.log(teamID, pokemonName);
     try {
         await fetch(`${backend_url}/removePokemon`, {
             method: 'POST',
