@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import '../styles/sidebar.css';
+import { backend_url } from '../constants/constants';
 
 interface LobbySidebarProps {
   handleLobbySelect: (lobby: { _id: string; name: string}) => void;
@@ -19,7 +20,7 @@ const LobbySidebar: React.FC<LobbySidebarProps> = ({ handleLobbySelect, selected
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const fetchLobbies = async () => {
-    const response = await fetch('https://pgr-draft-backend.vercel.app/api/lobbies');
+    const response = await fetch(`${backend_url}/lobbies`);
     const data = await response.json();
     data.sort((a: Lobby, b: Lobby) => a.priority - b.priority);
     setLobbies(data);

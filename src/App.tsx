@@ -10,7 +10,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [trainers, setTrainers] = useState([]);
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
-  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '64b3d97ba05427be59779158', name: 'MLC-GrandUnderground' });
+  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '65132b96e975546c6f1bc3b6', name: 'XLink-Minipete' });
 
   const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {   
     try {
@@ -68,7 +68,7 @@ function App() {
 
       useEffect(() => {
         setLoading(true);
-        fetch(`${backend_url}/lobby/64b3d97ba05427be59779158`)
+        fetch(`${backend_url}/lobby/65132b96e975546c6f1bc3b6`)
           .then(response => response.json())
           .then(data => {
             setTrainers(data.trainers);
