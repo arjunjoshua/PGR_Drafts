@@ -6,7 +6,7 @@ type PokemonProps = {
 
 const Pokemon: React.FC<PokemonProps> = ({ pokemonName }) => {
     const BASE_URL = 'https://img.pokemondb.net/sprites';
-    const pokemonNameCapitalized = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
+    let pokemonNameCapitalized = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
 
     let folder = 'home/normal';
 
@@ -22,6 +22,9 @@ const Pokemon: React.FC<PokemonProps> = ({ pokemonName }) => {
     }
 
     const imgSrc = `${BASE_URL}/${folder}/${pokemonName}.png`;
+
+    if (pokemonName.length > 17)
+    pokemonNameCapitalized = pokemonNameCapitalized.substring(0, 12);
 
     return (
         <div className="pokemon-card">
