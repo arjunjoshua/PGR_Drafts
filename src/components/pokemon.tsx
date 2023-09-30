@@ -1,8 +1,10 @@
 import '../styles/pokemonGrid.css';
 
+const SHINY_CHANCE = 6;
+
 type PokemonProps = {
     pokemonName: string;
-}
+};
 
 const Pokemon: React.FC<PokemonProps> = ({ pokemonName }) => {
     const BASE_URL = 'https://img.pokemondb.net/sprites';
@@ -11,8 +13,8 @@ const Pokemon: React.FC<PokemonProps> = ({ pokemonName }) => {
     let folder = 'home/normal';
 
     //shiny chance!
-    const shinyChance = Math.floor((Math.random() * 100) / 2);
-    if (shinyChance === 6) {
+    const shinyChance = Math.floor((Math.random() * 100)/2);
+    if (shinyChance === SHINY_CHANCE) {
         folder = 'home/shiny';
     }
 
@@ -23,8 +25,12 @@ const Pokemon: React.FC<PokemonProps> = ({ pokemonName }) => {
 
     const imgSrc = `${BASE_URL}/${folder}/${pokemonName}.png`;
 
-    if (pokemonName.length > 17)
-    pokemonNameCapitalized = pokemonNameCapitalized.substring(0, 12);
+    if (pokemonName.length > 17 ){
+        pokemonNameCapitalized = pokemonNameCapitalized.substring(0, 12);
+    }
+    else if (pokemonName === 'abomasnow-mega'){
+        pokemonNameCapitalized = 'Obama-mega'
+    }
 
     return (
         <div className="pokemon-card">
