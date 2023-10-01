@@ -2,7 +2,6 @@ import '../styles/reportResult.css'
 import '../styles/dropdown.css'
 import { backend_url } from '../constants/constants'
 import { useState } from 'react';
-import { set } from 'mongoose';
 
 interface ReportResultProps {
     trainer1: string,
