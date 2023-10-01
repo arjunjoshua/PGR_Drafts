@@ -10,6 +10,8 @@ interface Trainer {
     lost: number;
     tied: number;
     points: number;
+    wins: number;
+    losses: number;
 };
 
 interface ScoreboardProps {
@@ -37,7 +39,9 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
                 won: score.matchesWon,
                 lost: score.matchesLost,
                 tied: score.matchesTied,
-                points: score.points
+                points: score.points,
+                wins: score.wins,
+                losses: score.losses,
             }));
             setTrainers(fetchedTrainers);
             console.log("Trainer data set");
@@ -68,6 +72,7 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
                         <th>Lost</th>
                         <th>Tied</th>
                         <th>Points</th>
+                        <th>Record</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -84,6 +89,7 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
                                 <td>{trainer.lost}</td>
                                 <td>{trainer.tied}</td>
                                 <td>{trainer.points}</td>
+                                <td>{`${trainer.wins}-${trainer.losses}`}</td>
                             </tr>
                         ))
                     )}
