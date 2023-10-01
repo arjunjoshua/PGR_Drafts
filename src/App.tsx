@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { Trainer } from './components/trainerDropdown';
 import LoadingSpinner from './components/loadingSpinner';
 import { backend_url } from './constants/constants';
+import { set } from 'mongoose';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -13,6 +14,7 @@ function App() {
   const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '65132b96e975546c6f1bc3b6', name: 'XLink-Minipete' });
 
   const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {   
+    setLoading(true);
     try {
         await fetch(`${backend_url}/addPokemon`, {
             method: 'POST',
@@ -26,15 +28,17 @@ function App() {
         });
 
         // Notify the user that the request was successful
-        window.alert("Pokémon added successfully! Click OK or refresh to see the changes.");
+        //window.alert("Pokémon added successfully!");
         // Refetch the lobby data or handle the response as needed
-        handleLobbySelect(selectedLobby); // for instance
+        handleRefresh(selectedLobby, selectedTrainers); // for instance
     } catch (error) {
         console.error("Error adding Pokémon:", error);
+        setLoading(false);
     }
   };
 
   const removePokemonFromTrainer = async (teamID: string, pokemonName: string) => {
+    setLoading(true);
     try {
         await fetch(`${backend_url}/removePokemon`, {
             method: 'POST',
@@ -48,15 +52,16 @@ function App() {
         });
         
         // Notify the user that the request was successful
-        window.alert("Pokémon removed successfully! Click OK or refresh to see the changes.");
+        //window.alert("Pokémon removed successfully!");
         // Refetch the lobby data or handle the response as needed
-        handleLobbySelect(selectedLobby); // for instance
+        handleRefresh(selectedLobby, selectedTrainers); // for instance
     } catch (error) {
         console.error("Error removing Pokémon:", error);
+        setLoading(false);
     } 
   };
   
-  const handleLobbySelect = async (lobby: { _id: string; name: string }) => {
+  const handleLobbySelect = async (lobby: { _id: string; name: string }, ) => {
         setLoading(true);
         const response = await fetch(`${backend_url}/lobby/${lobby._id}`);
         const data = await response.json();
@@ -65,6 +70,30 @@ function App() {
         setSelectedLobby(data.lobby);
         setLoading(false);
       }
+
+const handleRefresh = async (lobby: { _id: string; name: string }, selectedTrainers: (Trainer | null)[]) => {
+    try {
+        const response = await fetch(`${backend_url}/lobby/${lobby._id}`);
+        const data = await response.json();
+
+        // Update the selected trainers with the new data
+        const updatedSelectedTrainers = selectedTrainers.map((selectedTrainer) => {
+            if (!selectedTrainer) return null;
+            // Find the updated trainer data from the fetched trainers
+            const updatedTrainer = data.trainers.find((trainer: Trainer) => trainer._id === selectedTrainer._id);
+            // If found, return the updated data, otherwise return the original selected trainer
+            return updatedTrainer || selectedTrainer;
+        });
+
+        setTrainers(data.trainers);
+        setSelectedTrainers(updatedSelectedTrainers);
+        setSelectedLobby(data.lobby);
+    } catch (error) {
+        console.error("Error refreshing data:", error);
+    } finally {
+        setLoading(false);
+    }
+  }
 
       useEffect(() => {
         setLoading(true);
