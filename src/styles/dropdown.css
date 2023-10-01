@@ -103,7 +103,7 @@
       height: 35px;
       font-size: 0.5rem;
     }
-    .modal-content {
+    .add-modal-content {
       background-color: #47353ed7;
       padding: 12px;
       border-radius: 3px;
@@ -112,7 +112,7 @@
       border: 2px solid #f0d9cb;
       height: 55px;
     }
-    .mon-submit {
+    .add-mon-submit {
       margin-left: 5%;
       color: rgb(243, 229, 229);
       width: 80px;
