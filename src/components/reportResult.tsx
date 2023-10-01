@@ -55,6 +55,12 @@ const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReport
         setShowTrainerNames(false);
     }
 
+    const handleBackClick = () => {
+        setShowTrainerNames(true);
+        setShowMatchRecord1(false);
+        setShowMatchRecord2(false);
+    }
+
     return (
         <div className='modal' onClick={(e) => {
             if (e.target === e.currentTarget) {
@@ -73,6 +79,7 @@ const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReport
                 <div className='modal-content'>
                 <button className='report-winner' onClick={() => handleWinner(trainer1ID, trainer1, 3, 1)}>3-1</button>
                 <button className='report-winner' onClick={() => handleWinner(trainer1ID, trainer1, 4, 0)}>4-0</button>
+                <button className='back-button' onClick={() => handleBackClick()}>Back</button>
                 </div>
             )}
             {showMatchRecord2 && (
