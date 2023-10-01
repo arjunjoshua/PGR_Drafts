@@ -71,8 +71,8 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
                         <th>Won</th>
                         <th>Lost</th>
                         <th>Tied</th>
-                        <th>Points</th>
                         <th>Record</th>
+                        <th>Points</th>
                     </tr>
                 </thead>
                     <tbody>
@@ -88,8 +88,8 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
                                 <td>{trainer.won}</td>
                                 <td>{trainer.lost}</td>
                                 <td>{trainer.tied}</td>
-                                <td>{trainer.points}</td>
                                 <td>{`${trainer.wins}-${trainer.losses}`}</td>
+                                <td>{trainer.points}</td>
                             </tr>
                         ))
                     )}

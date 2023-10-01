@@ -4,9 +4,9 @@
   
   .app-body::before {
     content: "";
-    /* background-image: url('../addi.png');
+    background-image: url('../addi.png');
     background-repeat: no-repeat;
-    background-position: center; */
+    background-position: center;
     background-color: #423a3a;
     background-size: 43%;
     opacity: 0.1;

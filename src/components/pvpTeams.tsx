@@ -12,7 +12,7 @@ function PvpTeams() {
   const [loading, setLoading] = useState(true);
   const [trainers, setTrainers] = useState([]);
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
-  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '64b3d97ba05427be59779158', name: 'MLC-GrandUnderground' });
+  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '65142ad50dab588c547ffff5', name: 'ML-Gaspar' });
 
   const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {   
     setLoading(true);
