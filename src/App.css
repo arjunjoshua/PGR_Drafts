@@ -17,6 +17,14 @@
     height: 100%;
     pointer-events: none;
   }
+
+  .top-container {
+    margin-left: 5%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 2%;
+  }
   
   h1 {
     font-size: 3rem;
@@ -27,17 +35,18 @@
     color: #f0d9cb;
     white-space: nowrap;
   }
+
   
-  /* h3 {
+   h3 {
     font-size: 2.5rem;
     font-weight: 500;
     line-height: 1.2;
     text-align: center;
     margin-left: 52%;
-    color: #dfd0d0;
-  } */
+    color: #f0d9cb;
+  }
   
-  /* Small devices (600px and up) */
+  /* Phone screens (600px and below) */
   @media only screen and (max-width: 600px) {
     .app-body::before{
       background-image: none;
@@ -48,10 +57,12 @@
       line-height: 0.2;
       margin-bottom: 7.5%;
     }
-    /* h3 {
-      font-size: 1.1rem;
-      margin-left: 2.5%;
-    } */
+    
+    .top-container {
+      margin-left: 2%;
+      margin-bottom: 10%;
+      gap: 6px;
+    }
   }
   
   /* Medium devices (768px and up) */

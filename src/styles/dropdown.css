@@ -26,7 +26,7 @@
     z-index: 1000; /* Ensure it's on top */
   }
   
-  .modal-content {
+  .add-modal-content {
     background-color: #47353ed7;
     padding: 20px;
     border-radius: 5px;
@@ -51,7 +51,7 @@
     width: 100px;
   }
 
-  .mon-submit {
+  .add-mon-submit {
     margin-left: 5%;
     color: rgb(243, 229, 229);
     width: 80px;

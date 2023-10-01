@@ -33,14 +33,14 @@ const PokemonRemoveModal = ({ showInputRemove, setShowInputRemove, selectedPokem
   
     return (
       <div className="modal" onClick={(e) => e.target === e.currentTarget && closeModal()}>
-        <div className="modal-content">
+        <div className="add-modal-content">
           <PokemonRemoveComponent 
             selectedPokemon={selectedPokemon}
             setSelectedPokemon={setSelectedPokemon} 
             team={selectedTeamPokemon}
           />
           <button 
-            className='mon-submit' 
+            className='add-mon-submit' 
             onClick={() => {
               closeModal();
               if (selectedPokemon) {
