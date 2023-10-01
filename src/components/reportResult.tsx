@@ -86,6 +86,7 @@ const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReport
                 <div className='modal-content'>
                 <button className='report-winner' onClick={() => handleWinner(trainer2ID, trainer2, 3, 1)}>3-1</button>
                 <button className='report-winner' onClick={() => handleWinner(trainer2ID, trainer2, 4, 0)}>4-0</button>
+                <button className='back-button' onClick={() => handleBackClick()}>Back</button>
                 </div>
             )}
         </div>

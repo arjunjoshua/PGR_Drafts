@@ -27,4 +27,8 @@ table {
     text-align: center;
   }
 
-  
+  @media only screen and (max-width: 600px) {
+    th, td {
+        padding: 3.7px; /* Reduce padding for mobile */
+    }
+}

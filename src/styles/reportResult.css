@@ -31,9 +31,27 @@
   }
 
   .back-button {
-    margin-left: 4%;
+    margin-left: 5%;
     margin-top: 4%;
     color: rgb(243, 229, 229);
     width: 75px;
     text-align: left;
   }
+
+  /* Media Query for Mobile Screens */
+@media only screen and (max-width: 600px) {
+  .modal-content {
+      height: 160px;
+      padding: 10px; /* Reduce padding for mobile */
+  }
+
+  .report-winner {
+      margin-left: 2%; /* Adjust margin for mobile */
+      width: auto; /* Allow the width to adjust based on content and available space */
+  }
+
+  .back-button {
+      margin-left: 2%;
+      width: 60px /* Adjust margin for mobile */
+  }
+}

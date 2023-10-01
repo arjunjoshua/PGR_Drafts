@@ -74,7 +74,7 @@ function PvpTeams() {
 
       useEffect(() => {
         setLoading(true);
-        fetch(`${backend_url}/lobby/64b3d97ba05427be59779158`)
+        fetch(`${backend_url}/lobby/65142ad50dab588c547ffff5`)
           .then(response => response.json())
           .then(data => {
             setTrainers(data.trainers);

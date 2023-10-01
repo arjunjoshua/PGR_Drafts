@@ -32,13 +32,13 @@ const PokemonAddModal = ({ showInput, setShowInput, selectedPokemon, setSelected
   
     return (
       <div className="modal" onClick={(e) => e.target === e.currentTarget && closeModal()}>
-        <div className="modal-content">
+        <div className="add-modal-content">
           <PokemonSelectComponent 
             selectedPokemon={selectedPokemon}
             setSelectedPokemon={setSelectedPokemon} 
           />
           <button 
-            className='mon-submit' 
+            className='add-mon-submit' 
             onClick={() => {
               closeModal();
               if (selectedPokemon) {

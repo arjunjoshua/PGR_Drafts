@@ -33,3 +33,15 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     border: 2px solid #f0d9cb;
   }
+
+  @media only screen and (max-width: 600px) {
+    .scoreboard-button, .report-button {
+        margin-left: 10px; /* Adjust margin for mobile */
+        top: 1%; /* Adjust top positioning */
+    }
+
+    .scoreboard-modal-content {
+        width: 99%; /* Make modal content take up most of the screen width on mobile */
+        padding: 5.4px; /* Reduce padding for mobile */
+    }
+}

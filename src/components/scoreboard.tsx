@@ -43,8 +43,9 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
                 wins: score.wins,
                 losses: score.losses,
             }));
+            //sort by points
+            fetchedTrainers.sort((a: Trainer, b: Trainer) => b.points - a.points);
             setTrainers(fetchedTrainers);
-            console.log("Trainer data set");
         }
         catch (error) {
             console.error("Error fetching scores:", error);
