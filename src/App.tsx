@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { Trainer } from './components/trainerDropdown';
 import LoadingSpinner from './components/loadingSpinner';
 import { backend_url } from './constants/constants';
-import { set } from 'mongoose';
 
 function App() {
   const [loading, setLoading] = useState(true);
