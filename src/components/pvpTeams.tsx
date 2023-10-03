@@ -29,13 +29,13 @@ function PvpTeams() {
         });
 
         // Notify the user that the request was successful
-        window.alert("Pokémon added successfully!");
+        //window.alert("Pokémon added successfully!");
         // Refetch the lobby data or handle the response as needed
-        handleLobbySelect(selectedLobby); // for instance
+        handleRefresh(selectedLobby, selectedTrainers); // for instance
     } catch (error) {
         console.error("Error adding Pokémon:", error);
+        setLoading(false);
     }
-    setLoading(false);
   };
 
   const removePokemonFromTrainer = async (teamID: string, pokemonName: string) => {
@@ -53,24 +53,48 @@ function PvpTeams() {
         });
         
         // Notify the user that the request was successful
-        window.alert("Pokémon removed successfully!");
+        //window.alert("Pokémon removed successfully!");
         // Refetch the lobby data or handle the response as needed
-        handleLobbySelect(selectedLobby); // for instance
+        handleRefresh(selectedLobby, selectedTrainers) // for instance
     } catch (error) {
         console.error("Error removing Pokémon:", error);
+        setLoading(false);
     } 
-    setLoading(false);
   };
   
   const handleLobbySelect = async (lobby: { _id: string; name: string }) => {
-        setLoading(true);
+      setLoading(true);
+      const response = await fetch(`${backend_url}/lobby/${lobby._id}`);
+      const data = await response.json();
+      setTrainers(data.trainers);
+      setSelectedTrainers([data.trainers[0], data.trainers[1]]);
+      setSelectedLobby(data.lobby);
+      setLoading(false);
+    }
+
+  const handleRefresh = async (lobby: { _id: string; name: string }, selectedTrainers: (Trainer | null)[]) => {
+    try {
         const response = await fetch(`${backend_url}/lobby/${lobby._id}`);
         const data = await response.json();
+
+        // Update the selected trainers with the new data
+        const updatedSelectedTrainers = selectedTrainers.map((selectedTrainer) => {
+            if (!selectedTrainer) return null;
+            // Find the updated trainer data from the fetched trainers
+            const updatedTrainer = data.trainers.find((trainer: Trainer) => trainer._id === selectedTrainer._id);
+            // If found, return the updated data, otherwise return the original selected trainer
+            return updatedTrainer || selectedTrainer;
+        });
+
         setTrainers(data.trainers);
-        setSelectedTrainers([data.trainers[0], data.trainers[1]]);
+        setSelectedTrainers(updatedSelectedTrainers);
         setSelectedLobby(data.lobby);
+    } catch (error) {
+        console.error("Error refreshing data:", error);
+    } finally {
         setLoading(false);
-      }
+    }
+  }
 
       useEffect(() => {
         setLoading(true);
