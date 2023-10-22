@@ -96,6 +96,7 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
                     )}
                 </tbody>
             </table>
+            <button className='close-scoreboard' onClick={() => setShowScoreboard(false)}>Close</button>
             </div>
          </div>
     )
