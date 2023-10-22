@@ -12,6 +12,7 @@ interface Trainer {
     points: number;
     wins: number;
     losses: number;
+    draws?: number;
 };
 
 interface ScoreboardProps {
@@ -42,6 +43,7 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
                 points: score.points,
                 wins: score.wins,
                 losses: score.losses,
+                draws: score.draws
             }));
             //sort by points
             fetchedTrainers.sort((a: Trainer, b: Trainer) => b.points - a.points);
@@ -89,7 +91,10 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
                                 <td>{trainer.won}</td>
                                 <td>{trainer.lost}</td>
                                 <td>{trainer.tied}</td>
-                                <td>{`${trainer.wins}-${trainer.losses}`}</td>
+                                <td>
+                                    {`${trainer.wins}-${trainer.losses}`}
+                                    {trainer.draws && trainer.draws > 0 ? `-${trainer.draws}` : ''}    
+                                </td>
                                 <td>{trainer.points}</td>
                             </tr>
                         ))
