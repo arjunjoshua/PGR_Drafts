@@ -43,7 +43,7 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
                 points: score.points,
                 wins: score.wins,
                 losses: score.losses,
-                draws: score.draws
+                draws: score.draws || 0
             }));
             //sort by points
             fetchedTrainers.sort((a: Trainer, b: Trainer) => b.points - a.points);
