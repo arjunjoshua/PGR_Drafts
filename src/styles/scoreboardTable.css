@@ -23,6 +23,14 @@ table {
     text-align: left;
   }
 
+  .close-scoreboard {
+    position: relative;
+    margin-top: 10px;
+    color: rgb(243, 229, 229);
+    width: 80px;
+    margin-left: 40%;
+  }
+
   .center-td {
     text-align: center;
   }
@@ -30,5 +38,11 @@ table {
   @media only screen and (max-width: 600px) {
     th, td {
         padding: 3.7px; /* Reduce padding for mobile */
+    }
+    .close-scoreboard {
+      color: rgb(243, 229, 229);
+      width: 60px;
+      height: 35px;
+      font-size: 0.85rem;
     }
 }

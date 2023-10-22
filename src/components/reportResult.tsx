@@ -17,7 +17,7 @@ const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReport
     const [showMatchRecord1, setShowMatchRecord1] = useState<boolean>(false);
     const [showMatchRecord2, setShowMatchRecord2] = useState<boolean>(false);
     const [showTrainerNames, setShowTrainerNames] = useState<boolean>(true);
-    const handleWinner = async (winnerID: string, winnerName: string, wins: number, losses: number) => {
+    const handleWinner = async (winnerID: string, winnerName: string, wins: number, losses: number, draws: number) => {
         setLoading(true);
         try {
             const response = await fetch(`${backend_url}/recordResult`, {
@@ -32,7 +32,8 @@ const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReport
                 winnerName,
                 lobbyID,
                 wins,
-                losses
+                losses,
+                draws
             })
         });
         const responseData= await response.json();
@@ -71,20 +72,24 @@ const ReportResult = ({trainer1, trainer2, trainer1ID, trainer2ID, setShowReport
             <div className='modal-content'>
             <button className='report-winner' onClick={() => handleTrainerClick(trainer1)}>{trainer1} won</button>
             <button className='report-winner' onClick={() => handleTrainerClick(trainer2)}>{trainer2} won</button>
-            <button className='report-winner' onClick={() => handleWinner('0','Tie', 2, 2)}>Tie</button> 
+            <button className='report-winner' onClick={() => handleWinner('0','Tie (2-2)', 2, 2, 0)}>Tie</button> 
             </div>
             )}
             {showMatchRecord1 && (
                 <div className='modal-content'>
-                <button className='report-winner' onClick={() => handleWinner(trainer1ID, trainer1, 3, 1)}>3-1</button>
-                <button className='report-winner' onClick={() => handleWinner(trainer1ID, trainer1, 4, 0)}>4-0</button>
+                <button className='report-winner' onClick={() => handleWinner(trainer1ID, trainer1, 3, 1, 0)}>3-1</button>
+                <button className='report-winner' onClick={() => handleWinner(trainer1ID, trainer1, 4, 0, 0)}>4-0</button>
+                <button className='report-winner' onClick={() => handleWinner(trainer1ID, trainer1, 2, 1, 1)}>2-1-1</button>
+                <button className='report-winner' onClick={() => handleWinner(trainer1ID, trainer1, 3, 0, 1)}>3-0-1</button>
                 <button className='back-button' onClick={() => handleBackClick()}>Back</button>
                 </div>
             )}
             {showMatchRecord2 && (
                 <div className='modal-content'>
-                <button className='report-winner' onClick={() => handleWinner(trainer2ID, trainer2, 3, 1)}>3-1</button>
-                <button className='report-winner' onClick={() => handleWinner(trainer2ID, trainer2, 4, 0)}>4-0</button>
+                <button className='report-winner' onClick={() => handleWinner(trainer2ID, trainer2, 3, 1, 0)}>3-1</button>
+                <button className='report-winner' onClick={() => handleWinner(trainer2ID, trainer2, 4, 0, 0)}>4-0</button>
+                <button className='report-winner' onClick={() => handleWinner(trainer2ID, trainer2, 2, 1, 1)}>2-1-1</button>
+                <button className='report-winner' onClick={() => handleWinner(trainer2ID, trainer2, 3, 0, 1)}>3-0-1</button>
                 <button className='back-button' onClick={() => handleBackClick()}>Back</button>
                 </div>
             )}
