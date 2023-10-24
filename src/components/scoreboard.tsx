@@ -17,12 +17,31 @@ interface Trainer {
 
 interface ScoreboardProps {
     selectedLobbyID: string;
+    showScoreboard: boolean;
     setShowScoreboard: (value: boolean) => void;
 };
 
-const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
+const Scoreboard = ({ selectedLobbyID, showScoreboard, setShowScoreboard }: ScoreboardProps) => {
     const [trainers, setTrainers] = useState<Trainer[]>([]);
     const [fetchingScores, setFetchingScores] = useState(false);
+
+    const closeScoreboard = () => setShowScoreboard(false);
+
+    const handlePopState = (e: Event) => {
+        closeScoreboard();
+        e.preventDefault();
+    };
+
+    useEffect(() => {
+        if (showScoreboard) {
+            window.history.pushState({}, '', window.location.pathname);
+            window.addEventListener('popstate', handlePopState);
+        }
+
+        return () => {
+            window.removeEventListener('popstate', handlePopState);
+        };
+    }, [setShowScoreboard]);
 
     const fetchScores = async () => {
         setFetchingScores(true);
@@ -53,7 +72,7 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
             console.error("Error fetching scores:", error);
         }
         setFetchingScores(false);
-    }
+    };
 
     useEffect(() => {
         fetchScores();
@@ -62,10 +81,10 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
     return (
         <div className='scoreboard-modal' onClick={(e) => {
             if (e.target === e.currentTarget) {
-                setShowScoreboard(false)
+                closeScoreboard();
             }
-          }}>
-            <div className='scoreboard-modal-content'>
+        }}>
+           <div className='scoreboard-modal-content'>
             <table>
                 <thead>
                     <tr>
@@ -108,3 +127,4 @@ const Scoreboard = ({selectedLobbyID, setShowScoreboard}: ScoreboardProps) => {
 }
 
 export default Scoreboard;
+

@@ -20,7 +20,7 @@ const ReportResultButton = ({ trainer1, trainer2, trainer1ID, trainer2ID, lobbyI
         </button>
         {showReportResult && 
         <ReportResult trainer1={trainer1} trainer2={trainer2} trainer1ID={trainer1ID} 
-        trainer2ID={trainer2ID} setShowReportResult={setShowReportResult} lobbyID={lobbyID} setLoading={setLoading}/>}
+        trainer2ID={trainer2ID} showReportResult={showReportResult} setShowReportResult={setShowReportResult} lobbyID={lobbyID} setLoading={setLoading}/>}
         </div>
     )
 }
