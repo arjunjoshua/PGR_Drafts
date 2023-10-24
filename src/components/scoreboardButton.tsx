@@ -12,7 +12,7 @@ const ScoreboardButton = ({selectedLobbyID}: ScoreboardProps) => {
         <div>
         <button className='scoreboard-button' onClick={() => setShowScoreboard(true)}>View Scoreboard</button>
         {showScoreboard &&
-        <Scoreboard selectedLobbyID={selectedLobbyID} setShowScoreboard={setShowScoreboard}/>}
+        <Scoreboard selectedLobbyID={selectedLobbyID} showScoreboard={showScoreboard} setShowScoreboard={setShowScoreboard}/>}
         </div>
     )
 }
