@@ -8,11 +8,25 @@ import { backend_url } from '../constants/constants';
 import ScoreboardButton from './scoreboardButton';
 import ReportResultButton from './reportResultButton';
 
+interface MatchResponse {
+  match: {
+      _id: string;
+      lobby: string;
+      trainer1: string;
+      trainer2: string;
+      winner: string;
+      winnerName: string;
+      isReported: boolean;
+      __v: number;
+  };
+}
+
 function PvpTeams() {
   const [loading, setLoading] = useState(true);
   const [trainers, setTrainers] = useState([]);
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
   const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '65142ad50dab588c547ffff5', name: 'ML-Gaspar' });
+  const [responseData, setResponseData] = useState<MatchResponse |null>(null); // Added state for response data
 
   const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {   
     setLoading(true);
@@ -125,9 +139,19 @@ function PvpTeams() {
       setLoading={setLoading}/>
       </div>
       <h1>{selectedLobby?.name}</h1>
+      {responseData?.match?.isReported ? (
+          responseData?.match?.winnerName === "Tie (2-2)" || responseData?.match?.winnerName === "Tie" ? (
+              <h3>It was a tie!</h3>
+          ) : responseData?.match?.winnerName ? (
+              <h3>{responseData.match.winnerName} won!</h3>
+          ) : null
+      ) : (
+          <h4>Match result pending..</h4>
+      )}
       <TrainerDropdown trainers={trainers} selectedTrainers={selectedTrainers} 
       setSelectedTrainers={setSelectedTrainers} selectedLobby={selectedLobby} 
       addPokemonToTrainer={addPokemonToTrainer} removePokemonFromTrainer={removePokemonFromTrainer}
+      setResponseData={setResponseData}
       />
     </div>
   );

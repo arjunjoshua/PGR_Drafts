@@ -91,7 +91,7 @@ const ReportResult = ({ trainer1, trainer2, trainer1ID, trainer2ID, showReportRe
                 <div className='modal-content'>
                     <button className='report-winner' onClick={() => handleTrainerClick(trainer1)}>{trainer1} won</button>
                     <button className='report-winner' onClick={() => handleTrainerClick(trainer2)}>{trainer2} won</button>
-                    <button className='report-winner' onClick={() => handleWinner('0', 'Tie (2-2)', 2, 2, 0)}>Tie</button>
+                    <button className='report-winner' onClick={() => handleWinner('0', 'Tie (2-2)', 2, 2, 0)}>Tie (2-2)</button>
                 </div>
             )}
             {modalState === ModalState.MATCH_RECORD1 && (

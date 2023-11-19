@@ -21,6 +21,7 @@ const Pokemon: React.FC<PokemonProps> = ({ pokemonName }) => {
     //prevents mewtwo-armored from breaking
     if (pokemonName === 'mewtwo-armored') {
         folder = 'go/normal';
+        pokemonNameCapitalized = 'Mewtwo-armor';
     }
 
     const imgSrc = `${BASE_URL}/${folder}/${pokemonName}.png`;

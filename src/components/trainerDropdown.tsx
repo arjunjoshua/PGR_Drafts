@@ -4,11 +4,25 @@ import '../styles/dropdown.css';
 import '../App.css';
 import PokemonAddModal from './addPokemonModal';
 import PokemonRemoveModal from './removePokemonModal';
+import { backend_url } from '../constants/constants';
 
 export interface Trainer {
   _id: string;
   name: string;
   teams: Team[];
+}
+
+interface MatchResponse {
+  match: {
+      _id: string;
+      lobby: string;
+      trainer1: string;
+      trainer2: string;
+      winner: string;
+      winnerName: string;
+      isReported: boolean;
+      __v: number;
+  };
 }
 
 interface Team {
@@ -24,6 +38,7 @@ interface TrainerDropdownProps {
   selectedLobby: { _id: string; name: string };
   addPokemonToTrainer: (trainerId: string, pokemonName: string) => void;
   removePokemonFromTrainer: (trainerId: string, pokemonName: string) => void;
+  setResponseData: React.Dispatch<React.SetStateAction<MatchResponse | null>>;
 }
 
 type PokemonOption = {
@@ -32,19 +47,32 @@ type PokemonOption = {
 };
 
 
-const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby, addPokemonToTrainer, removePokemonFromTrainer }) => {
+const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby, addPokemonToTrainer, removePokemonFromTrainer, setResponseData }) => {
   const [ showInput, setShowInput ] = useState<boolean>(false); 
   const [ showInputRemove, setShowInputRemove ] = useState<boolean>(false);
   const [ selectedPokemon, setSelectedPokemon ] = useState<PokemonOption | null>(null);
   const [ selectedTeamId, setSelectedTeamId ] = useState<string>('');
   const [ selectedTeamPokemon, setSelectedTeamPokemon ] = useState<string[]>([]); // [
   
-  const handleChange = (index: number) => (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (index: number) => async (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTrainerId = event.target.value;
     const newSelectedTrainer = trainers.find(trainer => trainer._id === selectedTrainerId);
     const newSelectedTrainers = [...selectedTrainers];
     newSelectedTrainers[index] = newSelectedTrainer || null;
     setSelectedTrainers(newSelectedTrainers);
+    try{
+      // setLoading(true);
+      const response = await fetch(`${backend_url}/lobby/getResult?trainer1ID=${newSelectedTrainers[0]?._id}&trainer2ID=${newSelectedTrainers[1]?._id}&lobbyID=${selectedLobby._id}`, {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+              },
+          });
+      const data = await response.json();
+      setResponseData(data); // Update state with response data
+  } catch (error) {
+      console.log(error);
+  }
   };
 
   return (
