@@ -2,7 +2,6 @@ import '../styles/scoreboard.css'
 import '../styles/reportResult.css'
 import { useState, useEffect } from 'react';
 import ReportResult from './reportResult';
-import { backend_url } from '../constants/constants';
 
 interface reportResultButtonProps {
     trainer1: string;
