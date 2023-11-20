@@ -22,6 +22,17 @@
     border: 2px solid #f0d9cb;
   }
 
+  .modal-content-result {
+    display: flex;
+    flex-direction: column;
+    background-color: #47353d;
+    padding: 10px;
+    border-radius: 5px;
+    width: 160px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid #f0d9cb;
+  }
+
   .report-winner {
     margin-left: 5%;
     margin-top: 4%;
@@ -41,8 +52,13 @@
   /* Media Query for Mobile Screens */
 @media only screen and (max-width: 600px) {
   .modal-content {
-      height: 160px;
+      height: 190px;
       padding: 10px; /* Reduce padding for mobile */
+  }
+
+  .modal-content-result {
+    height: 160px;
+    padding: 10px; /* Reduce padding for mobile */
   }
 
   .report-winner {

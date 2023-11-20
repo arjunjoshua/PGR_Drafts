@@ -7,12 +7,27 @@ import LoadingSpinner from './loadingSpinner';
 import { backend_url } from '../constants/constants';
 import ScoreboardButton from './scoreboardButton';
 import ReportResultButton from './reportResultButton';
+import getResult from './getResult';
+
+interface MatchResponse {
+  match: {
+      _id: string;
+      lobby: string;
+      trainer1: string;
+      trainer2: string;
+      winner: string;
+      winnerName: string;
+      isReported: boolean;
+      __v: number;
+  };
+}
 
 function PvpTeams() {
   const [loading, setLoading] = useState(true);
   const [trainers, setTrainers] = useState([]);
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
   const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '65142ad50dab588c547ffff5', name: 'ML-Gaspar' });
+  const [responseData, setResponseData] = useState<MatchResponse |null>(null); // Added state for response data
 
   const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {   
     setLoading(true);
@@ -70,6 +85,7 @@ function PvpTeams() {
       setSelectedTrainers([data.trainers[0], data.trainers[1]]);
       setSelectedLobby(data.lobby);
       setLoading(false);
+      getResult({trainer1ID: data.trainers[0]._id, trainer2ID: data.trainers[1]._id, lobbyID: data.lobby._id, setResponseData: setResponseData})
     }
 
   const handleRefresh = async (lobby: { _id: string; name: string }, selectedTrainers: (Trainer | null)[]) => {
@@ -104,6 +120,7 @@ function PvpTeams() {
             setTrainers(data.trainers);
             setSelectedTrainers([data.trainers[0], data.trainers[1]]);
             setLoading(false);
+            getResult({trainer1ID: data.trainers[0]._id, trainer2ID: data.trainers[1]._id, lobbyID: "65142ad50dab588c547ffff5", setResponseData: setResponseData})
           }) 
           .catch(error => {
             console.error(error);
@@ -122,12 +139,22 @@ function PvpTeams() {
       <ScoreboardButton selectedLobbyID={selectedLobby._id}/>
       <ReportResultButton trainer1={selectedTrainers[0]?.name || "Trainer 1"} trainer2={selectedTrainers[1]?.name || "Trainer 2"}
       trainer1ID={selectedTrainers[0]?._id || '0'} trainer2ID={selectedTrainers[1]?._id || '0'} lobbyID={selectedLobby._id} 
-      setLoading={setLoading}/>
+      setLoading={setLoading} responseData={responseData}/>
       </div>
       <h1>{selectedLobby?.name}</h1>
+      {responseData?.match?.isReported ? (
+          responseData?.match?.winnerName === "Tie (2-2)" || responseData?.match?.winnerName === "Tie" ? (
+              <h3>It was a tie!</h3>
+          ) : responseData?.match?.winnerName ? (
+              <h3>{responseData.match.winnerName} won!</h3>
+          ) : null
+      ) : (
+          <h4>Match result pending..</h4>
+      )}
       <TrainerDropdown trainers={trainers} selectedTrainers={selectedTrainers} 
       setSelectedTrainers={setSelectedTrainers} selectedLobby={selectedLobby} 
       addPokemonToTrainer={addPokemonToTrainer} removePokemonFromTrainer={removePokemonFromTrainer}
+      setResponseData={setResponseData}
       />
     </div>
   );
