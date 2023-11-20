@@ -4,7 +4,7 @@ import '../styles/dropdown.css';
 import '../App.css';
 import PokemonAddModal from './addPokemonModal';
 import PokemonRemoveModal from './removePokemonModal';
-import { backend_url } from '../constants/constants';
+import getResult from './getResult';
 
 export interface Trainer {
   _id: string;
@@ -60,20 +60,16 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
     const newSelectedTrainers = [...selectedTrainers];
     newSelectedTrainers[index] = newSelectedTrainer || null;
     setSelectedTrainers(newSelectedTrainers);
-    try{
-      // setLoading(true);
-      const response = await fetch(`${backend_url}/lobby/getResult?trainer1ID=${newSelectedTrainers[0]?._id}&trainer2ID=${newSelectedTrainers[1]?._id}&lobbyID=${selectedLobby._id}`, {
-          method: "GET",
-          headers: {
-              "Content-Type": "application/json",
-              },
-          });
-      const data = await response.json();
-      setResponseData(data); // Update state with response data
-  } catch (error) {
-      console.log(error);
+
+    // Fetch the result of the match if both trainers are selected
+    getResult({
+      trainer1ID: newSelectedTrainers[0]?._id || '',
+      trainer2ID: newSelectedTrainers[1]?._id || '',
+      lobbyID: selectedLobby._id, 
+      setResponseData: setResponseData });
   }
-  };
+    
+    
 
   return (
     <div>
