@@ -133,12 +133,23 @@
   }
 
   /* large devices */
-  @media only screen and (min-width: 992px) {
-    .trainer-selection {
-      font-size: 0.75rem;
-    }
+  @media only screen and (min-width: 1300px) {
+     .trainer-selection {
+      font-size: 0.9rem;
+    } 
     .trainer-dropdown {
-      margin-left: 8%;
-      padding: 10px;
+      margin-left: 26%;
+      padding: 12px;
+    }
+    .add-pokemon-button {
+      width: 125px;
+    }
+    .remove-pokemon-button {
+      margin-left: 6%;
+      width: 125px;
+    }
+    .add-remove-container {
+      position: relative;
+      left: 32%;
     }
   }
