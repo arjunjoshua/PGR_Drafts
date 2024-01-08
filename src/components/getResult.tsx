@@ -16,6 +16,9 @@ interface MatchResponse {
         winner: string;
         winnerName: string;
         isReported: boolean;
+        wins: number;
+        losses: number;
+        draws: number;
         __v: number;
     }
 };

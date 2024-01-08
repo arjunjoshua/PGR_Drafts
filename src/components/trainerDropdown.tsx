@@ -21,6 +21,9 @@ interface MatchResponse {
       winner: string;
       winnerName: string;
       isReported: boolean;
+      wins: number;
+      losses: number;
+      draws: number;
       __v: number;
   };
 }
@@ -48,12 +51,12 @@ type PokemonOption = {
 
 
 const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTrainers, setSelectedTrainers, selectedLobby, addPokemonToTrainer, removePokemonFromTrainer, setResponseData }) => {
-  const [ showInput, setShowInput ] = useState<boolean>(false); 
+  const [ showInput, setShowInput ] = useState<boolean>(false);
   const [ showInputRemove, setShowInputRemove ] = useState<boolean>(false);
   const [ selectedPokemon, setSelectedPokemon ] = useState<PokemonOption | null>(null);
   const [ selectedTeamId, setSelectedTeamId ] = useState<string>('');
   const [ selectedTeamPokemon, setSelectedTeamPokemon ] = useState<string[]>([]); // [
-  
+
   const handleChange = (index: number) => async (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedTrainerId = event.target.value;
     const newSelectedTrainer = trainers.find(trainer => trainer._id === selectedTrainerId);
@@ -65,11 +68,11 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
     getResult({
       trainer1ID: newSelectedTrainers[0]?._id || '',
       trainer2ID: newSelectedTrainers[1]?._id || '',
-      lobbyID: selectedLobby._id, 
+      lobbyID: selectedLobby._id,
       setResponseData: setResponseData });
   }
-    
-    
+
+
 
   return (
     <div>
@@ -90,8 +93,8 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
               <div key={team._id} className='team-container'>
               <Team team={team.pokemons} />
               <div className='add-remove-container'>
-              <button 
-                className='add-pokemon-button' 
+              <button
+                className='add-pokemon-button'
                 onClick={() => {
                     setShowInput(true);
                     setSelectedTeamId(team._id);  // Save the ID of the team to which we want to add a Pokemon
@@ -99,11 +102,11 @@ const TrainerDropdown: React.FC<TrainerDropdownProps> = ({ trainers, selectedTra
             >
                 Add a Pokémon
             </button>
-            <button 
-                className='remove-pokemon-button' 
+            <button
+                className='remove-pokemon-button'
                 onClick={() => {
                     setShowInputRemove(true);
-                    setSelectedTeamId(team._id); 
+                    setSelectedTeamId(team._id);
                     setSelectedTeamPokemon(team.pokemons);
                 }}
             >
