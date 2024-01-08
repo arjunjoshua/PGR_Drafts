@@ -18,6 +18,9 @@ interface MatchResponse {
       winner: string;
       winnerName: string;
       isReported: boolean;
+      wins: number;
+      losses: number;
+      draws: number;
       __v: number;
   };
 }
@@ -132,6 +135,10 @@ function PvpTeams() {
   if (loading) {
    return <LoadingSpinner/>
   }
+
+  //the results display 'Match results pending... while the data is retrieved, and also if it is empty
+    // if the data exists, check for tie, otherwise print the winner name along with the score
+    // if draws !=0, print W-L-D, else print W-L
   
   return (
     <div className='app-body'>
@@ -147,7 +154,7 @@ function PvpTeams() {
           responseData?.match?.winnerName === "Tie (2-2)" || responseData?.match?.winnerName === "Tie" ? (
               <h3>It was a tie!</h3>
           ) : responseData?.match?.winnerName ? (
-              <h3>{responseData.match.winnerName} won!</h3>
+              <h3>{responseData.match.winnerName} won {responseData.match.wins}-{responseData.match.losses}{responseData.match.draws !== 0 ? - `-${responseData.match.draws}` : ''}!</h3>
           ) : null
       ) : (
           <h4>Match result pending..</h4>
