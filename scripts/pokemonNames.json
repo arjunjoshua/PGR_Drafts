@@ -108,6 +108,8 @@
   "caterpie",
   "celebi",
   "celesteela",
+  "cetitan",
+  "cetoddle",
   "chandelure",
   "chansey",
   "charizard",
@@ -317,6 +319,7 @@
   "granbull",
   "graveler",
   "graveler-alolan",
+  "greavard",
   "greedent",
   "greninja",
   "grimer",
@@ -357,6 +360,7 @@
   "hoothoot",
   "hoppip",
   "horsea",
+  "houndstone",
   "houndoom",
   "houndoom-mega",
   "houndour",
@@ -448,6 +452,8 @@
   "luxio",
   "luxray",
   "lycanroc-midday",
+  "lycanroc-dusk",
+  "lycanroc-midnight",
   "machamp",
   "machoke",
   "machop",
@@ -920,5 +926,6 @@
   "zubat",
   "zweilous",
   "zygarde-10",
-  "zygarde-50"
+  "zygarde-50",
+  "zygarde-complete"
 ]
