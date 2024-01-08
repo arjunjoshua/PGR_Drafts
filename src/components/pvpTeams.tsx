@@ -22,6 +22,8 @@ interface MatchResponse {
   };
 }
 
+const staticLobby: string = "659bc1ad61bc49078957414c";
+
 function PvpTeams() {
   const [loading, setLoading] = useState(true);
   const [trainers, setTrainers] = useState([]);
@@ -106,7 +108,7 @@ function PvpTeams() {
         setSelectedTrainers(updatedSelectedTrainers);
         setSelectedLobby(data.lobby);
     } catch (error) {
-        console.error("Error refreshing data:", error);
+        console.error("Error refreshing data: ", error);
     } finally {
         setLoading(false);
     }
@@ -114,13 +116,13 @@ function PvpTeams() {
 
       useEffect(() => {
         setLoading(true);
-        fetch(`${backend_url}/lobby/65142ad50dab588c547ffff5`)
+        fetch(`${backend_url}/lobby/{staticLobby}`)
           .then(response => response.json())
           .then(data => {
             setTrainers(data.trainers);
             setSelectedTrainers([data.trainers[0], data.trainers[1]]);
             setLoading(false);
-            getResult({trainer1ID: data.trainers[0]._id, trainer2ID: data.trainers[1]._id, lobbyID: "65142ad50dab588c547ffff5", setResponseData: setResponseData})
+            getResult({trainer1ID: data.trainers[0]._id, trainer2ID: data.trainers[1]._id, lobbyID: staticLobby, setResponseData: setResponseData})
           }) 
           .catch(error => {
             console.error(error);
