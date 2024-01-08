@@ -26,7 +26,8 @@ function PvpTeams() {
   const [loading, setLoading] = useState(true);
   const [trainers, setTrainers] = useState([]);
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
-  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '65142ad50dab588c547ffff5', name: 'ML-Gaspar' });
+  // update the static lobby ID and name at the start of a new season
+  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: '659bc1ad61bc49078957414c', name: 'XL-Volo' });
   const [responseData, setResponseData] = useState<MatchResponse |null>(null); // Added state for response data
 
   const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {   
@@ -111,7 +112,7 @@ function PvpTeams() {
         setLoading(false);
     }
   }
-
+    // update the static lobby id at two places in this useEffect at the start of a new season
       useEffect(() => {
         setLoading(true);
         fetch(`${backend_url}/lobby/659bc1ad61bc49078957414c`)
