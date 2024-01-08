@@ -22,8 +22,6 @@ interface MatchResponse {
   };
 }
 
-const staticLobby: string = "659bc1ad61bc49078957414c";
-
 function PvpTeams() {
   const [loading, setLoading] = useState(true);
   const [trainers, setTrainers] = useState([]);
@@ -116,13 +114,13 @@ function PvpTeams() {
 
       useEffect(() => {
         setLoading(true);
-        fetch(`${backend_url}/lobby/{staticLobby}`)
+        fetch(`${backend_url}/lobby/659bc1ad61bc49078957414c`)
           .then(response => response.json())
           .then(data => {
             setTrainers(data.trainers);
             setSelectedTrainers([data.trainers[0], data.trainers[1]]);
             setLoading(false);
-            getResult({trainer1ID: data.trainers[0]._id, trainer2ID: data.trainers[1]._id, lobbyID: staticLobby, setResponseData: setResponseData})
+            getResult({trainer1ID: data.trainers[0]._id, trainer2ID: data.trainers[1]._id, lobbyID: "659bc1ad61bc49078957414c", setResponseData: setResponseData})
           }) 
           .catch(error => {
             console.error(error);
