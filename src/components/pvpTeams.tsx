@@ -28,7 +28,7 @@ interface MatchResponse {
 function PvpTeams() {
 
   //static lobby that can be changed every season
-  const staticLobbyID: string = '6708de5aea8b1ee2c3e0749e';
+  const staticLobbyID: string = '6708e4b47c083c4c85adf62a';
   const staticLobbyName: string = 'XL-FireSpin';
   const [loading, setLoading] = useState(true);
   const [trainers, setTrainers] = useState([]);
