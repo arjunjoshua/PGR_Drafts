@@ -28,12 +28,13 @@ interface MatchResponse {
 function PvpTeams() {
 
   //static lobby that can be changed every season
-  const staticLobbyID = '660b2989d00b69c9765ff988';
+  const staticLobbyID: string = '6708de5aea8b1ee2c3e0749e';
+  const staticLobbyName: string = 'XL-FireSpin';
   const [loading, setLoading] = useState(true);
   const [trainers, setTrainers] = useState([]);
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
   // update the static lobby ID and name at the start of a new season
-  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: staticLobbyID, name: 'XL-Scorbunny' });
+  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: staticLobbyID, name: staticLobbyName });
   const [responseData, setResponseData] = useState<MatchResponse |null>(null); // Added state for response data
 
   const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {   
