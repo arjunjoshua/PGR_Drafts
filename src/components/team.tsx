@@ -9,7 +9,7 @@ const Team: React.FC<TeamProps> = ({ team }) => {
     return (
         <div className='pokemon-grid'>
             {team.map((pokemonName, index) => (
-                <Pokemon key={index} pokemonName={pokemonName} />
+                <Pokemon key={index} pokemonName={pokemonName.trim()} />
             ))}
         </div>
     );
