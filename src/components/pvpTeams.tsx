@@ -27,14 +27,10 @@ interface MatchResponse {
 
 function PvpTeams() {
 
-  //static lobby that can be changed every season
-  const staticLobbyID: string = '678a4a047e1162fbb640f3a3';
-  const staticLobbyName: string = 'XL-RowletJan-Champs';
   const [loading, setLoading] = useState(true);
   const [trainers, setTrainers] = useState([]);
   const [selectedTrainers, setSelectedTrainers] = useState<(Trainer | null)[]>([null, null]);
-  // update the static lobby ID and name at the start of a new season
-  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: staticLobbyID, name: staticLobbyName });
+  const [selectedLobby, setSelectedLobby] = useState<{ _id: string; name: string }>({ _id: "", name: "" });
   const [responseData, setResponseData] = useState<MatchResponse |null>(null); // Added state for response data
 
   const addPokemonToTrainer = async (teamID: string, pokemonName: string) => {   
@@ -119,16 +115,17 @@ function PvpTeams() {
         setLoading(false);
     }
   }
-    // update the static lobby id at two places in this useEffect at the start of a new season
+
       useEffect(() => {
         setLoading(true);
-        fetch(`${backend_url}/lobby/${staticLobbyID}`)
+        fetch(`${backend_url}/start_up`)
           .then(response => response.json())
           .then(data => {
             setTrainers(data.trainers);
             setSelectedTrainers([data.trainers[0], data.trainers[1]]);
+            setSelectedLobby(data.lobby);
             setLoading(false);
-            getResult({trainer1ID: data.trainers[0]._id, trainer2ID: data.trainers[1]._id, lobbyID: staticLobbyID, setResponseData: setResponseData})
+            getResult({trainer1ID: data.trainers[0]._id, trainer2ID: data.trainers[1]._id, lobbyID: data.lobby._id, setResponseData: setResponseData})
           }) 
           .catch(error => {
             console.error(error);
